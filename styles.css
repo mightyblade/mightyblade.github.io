@@ -1,6 +1,6 @@
 :root {
   --preto:     #000000; --branco:   #EEEEEE; --brancoc:   #FFFFFF;
-  --cinza:     #888888; --cinzae:   #555555; --cinzacab:  #2B2B2B; --cinzapar:  #BABABA; --cinzaimpar:#DCDCDC;
+  --cinza:     #888888; --cinzae:   #555555; --cinzacab:  #2B2B2B; --cinzapar:  #DCDCDC; --cinzaimpar:#BABABA;
   --vermelhoc: #FFAAAA; --vermelho: #EE9999; --vermelhoe: #CC7777; --vermelhot: #FF0000;
   --verdec:    #AAFFAA; --verde:    #99EE99; --verdee:    #77CC77;
   --azulc:     #AAAAFF; --azul:     #9999EE; --azule:     #7777CC; --azulx:     #222299;
@@ -9,233 +9,292 @@
   --listalonga: 25.5em; --habdesc: 23.4em;
 }
 /* --cinzapar: #DCDCDC; --cinzaimpar:#FEFEFE; */
-body { background-image: url("img/0bg.jpg"); background-color: #000000;  font-family:Arial; }
+body { background-image: url("img/0bg.jpg"); background-color: #AAAAAA;  font-family:Arial; }
 
-/*********************************************************************************************************************/
+/* COR */
+.verm { color:var(--vermelhoe); } .azul { color:var(--azule); } .amar { color:var(--amarelo); }
+.vermelho { color:red; } .amarelo { color:var(--amarelot);  }
+
 /* GENÉRICOS */
+#versao { color:var(--brancoc); position:absolute; left:95%; bottom:6px; }
+.f07 { font-size:0.7em; } .f08 { font-size:0.8em; } .f09 { font-size:0.9em; } .f1 { font-size:1em; } .f2 { font-size:2em; }
+.fr { float:right; } .fl { float:left; } .di { display: inline-block; }
+.tc { text-align:center; } .tl { text-align:left; } .tr { text-align:right; }
+.pt02 { padding-top:0.2em; }
+.m5 { margin:0.5em; } .mt { margin-top:0.5em; } .mb { margin-bottom:0.5em; } .ml { margin-left:0.5em; } .mr { margin-left:0.5em; }
 
-.texto_vermelho { color: var(--vermelhot); }
-.texto_amarelo  { color: var(--amarelot); }
+.lista { float:left; display:block; overflow-x:hidden; overflow-y:scroll; width:100%; background-color:var(--cinzae); }
+.bl1 { border-left:1px solid black;  } .br1 { border-right:1px solid black; } .bt1 { border-top:1px solid black; } .bb1 { border-bottom:1px solid black; }
+.fundo_branco { background-color: white; }
 
-.titulo    { text-align:center; margin-top:0.5em; font-size: 1.5em; color:var(--branco);}
-.cabecalho, .rodape { display:block; float:left; width:100%; background-color:var(--cinzacab); font-size:1.2em; 
-                      padding-top:0.2em; padding-bottom:0.2em; color:var(--branco); }
-.cabecalho          { text-align:center; }
-.rodape, .rodapezim { text-align:left; }
-.rodapezim { float:left; display:block; width:100%; height:1.3em; background-color:var(--cinzacab); }
+.h2 { height:2em; }
 
-/* Lista e seus Elementos */
-.lista, .lista_curta, .lista_hab { float:left; display:block; overflow-x:hidden; overflow-y:scroll; width:100%; background-color:var(--cinzae); }
-.lista { height:14.9em; }
-.lista_curta { height:10.6em; }
-.lista_hab { height:var(--listalonga); }
+.elemento_par, .elemento_impar { float:left; display:block; height:2em; width:100%; border-bottom:1px solid black; }
+.elemento_par { background-color:var(--cinzapar); } .elemento_impar { background-color:var(--cinzaimpar); }
+.lf_botao { display:inline-block; float:right; margin-right:0.25em; height:100%; }
 
-.linha_par, .linha_impar, .elemento_par, .elemento_impar { transition:all 0.3s;  float:left; display: block; height:2em; border: 1px solid black; }
-.linha_par, .linha_impar { width:100%; }
-.elemento_par, .elemento_impar { width:99.5%; }
-.linha_par, .elemento_par   { background-color:var(--cinzapar); }
-.linha_impar, .elemento_impar { background-color:var(--cinzaimpar); }
-.elemento_par .nome, .elemento_impar .nome { margin-top:0.5em; margin-left:0.5em;}
+/* LARGURAS */
+.tab { width:0.5em; }
+.w1 { width:1%; } .w2 { width:2%; } .w3 { width:3%; } .w4 { width:4%; } .w5 { width:5%; } .w6 { width:6%; } .w7 { width:7%; } .w8 { width:8%; } .w9 { width:9%; }
+.w10 { width:10%; } .w11 { width:11%; } .w12 { width:12%; } .w13 { width:13%; } .w14 { width:14%; } .w15 { width:15%; } .w16 { width:16%; } .w17 { width:17%; } .w18 { width:18%; }
+.w20 { width:20%; } .w25 { width:25%; }
+.w30 { width:30%; } .w33 { width:33%; } .w34 { width:34%; } .w35 { width:35%; } .w37 { width:37%; }
+.w40 { width:40%; } .w45 { width:45%; } 
+.w51 { width:51%; } .w52 { width:52%; } .w54 { width:54%; } .w55 { width:55%; } .w58 { width:58%; }
+.w60 { width:60%; } .w66 { width:65%; } .w66 { width:66%; }
+.w70 { width:70%; }
+.w80 { width:80%; }
+.w90 { width:90%; } .w95 { width:95%; } .w98 { width:98%; }
+.w100 { width:100%; }
 
-/*Botões para seleção de Fonte para Rótulo, Habilidade e Equipamento */
-.botao_inicial, .botao_fonte, .botao_fonte_s, .botao_categoria, .botao_categoria_s, #botao_exportar {
-  cursor:pointer; float:left; height:2em; text-align:center; border-style:none; font-size:0.7em; color:var(--brancoc); 
-   border-radius:0.5em; margin-right:0.2em; margin-left:0.2em; transition: all 0.2s; transition-timing-function: ease-out; }
-.botao_inicial { width:30%; font-weight:bold; }
-.botao_fonte, .botao_fonte_s         { width:15.3%; font-weight:bold; }
-.botao_categoria, .botao_categoria_s { width:11.8%; font-weight:bold; }
-.botao_inicial, .botao_fonte, .botao_categoria, #botao_exportar { background-color: var(--cinza); }
-.botao_fonte_s, .botao_categoria_s { background-color: var(--cinzae); text-shadow: 2px 2px var(--cinza); }
-.botao_inicial:hover, .botao_fonte:hover, .botao_fonte_s:hover, .botao_categoria:hover, .botao_categoria_s:hover, #botao_exportar:hover { 
-  background-color:var(--branco); color:var(--preto); }
-.botao_fonte_s:hover, .botao_categoria_s:hover { text-shadow: 2px 2px var(--cinza); }
+/* ALTURAS */
+.t3l, .t4l, .t6l, .t7l, .t8l, .t8bl, .t9l, .t11l, .t11m, .t13l { overflow:auto; background-color:var(--cinzae); }
+.t3l { height:6.8em; } .t4l { height:9em; } .t6l { height:13.5em; } .t7l { height:16.8em; } .t8l { height:18em; } .t8bl { height:19em; } .t9l { height:20em; } 
+.t11l { height:25em; } .t11m { height:26em; } .t13l { height:29em; }
 
-/* Botões Adicionar(+), Remover(X), Diminuir(-) e Desabilitado(#) */
+/* TABELAS */
+ table { width:100%;  border-collapse:collapse; border-right:1px solid black; }
+ td { text-align:center; border-top:1px solid black; border-bottom:1px solid black; font-size:1em; height:2em; }
+ thead th { font-weight:bold; font-size:1.2em; border:1px solid #000; color:var(--branco); background-color:var(--cinzacab); border:none; }
+ thead tr div { position:absolute; top:2px; }
+ .et { border:1px solid black; position:relative; padding-top:30px; background-color:var(--cinzacab); }
+
+/* LINHAS */
+	.impar { font-size:1em; background-color:var(--cinzaimpar); }
+	.par { font-size:1em; background-color:var(--cinzapar); }
+
+/* Botões/ FONTE */
+.botao_inicial, .botao_fonte, .botao_fonte_s, .bt_c_, .bt_cs, #botao_exportar { cursor:pointer; float:left; height:2em; text-align:center; border-style:none; font-weight:bold; font-size:0.7em;  color:var(--brancoc); border-radius:0.5em; margin-right:0.2em; margin-left:0.2em; transition: all 0.2s; transition-timing-function: ease-out; }
+.botao_inicial { width:30%; } .botao_fonte, .botao_fonte_s  { width:15.3%; } .bt_c_, .bt_cs { width:11.8%; }
+.botao_inicial, .botao_fonte, .bt_c_, #botao_exportar { background-color: var(--cinza); }
+.botao_fonte_s, .bt_cs { background-color: var(--cinzae); text-shadow: 2px 2px var(--cinza); }
+.botao:hover, .botao_inicial:hover, .botao_fonte:hover, .botao_fonte_s:hover, .bt_c_:hover, .bt_cs:hover, #botao_exportar:hover { background-color:var(--branco); color:var(--preto); border:1px solid black; }
+.botao_fonte_s:hover, .bt_cs:hover { text-shadow: 2px 2px var(--cinza); }
+
+/* Botões/ ADICIONAR{+}, REMOVER{X}, DIMINIUIR[-] e DESABILITADO{#} */
 .botao_sqn { float:left; width:2em; height:80%; }
 .botao_adi, .botao_rem, .botao_dim { cursor:pointer; }
-.botao_adi, .botao_rem, .botao_dim, .botao_des { 
-  float:left; width:2em; height:80%; margin-top:0.2em; margin-left:0.2em; 
-  text-align:center; background-color:var(--cinza); border-style:none; border-radius:0.5em; font-weight:bold;
-  transition: all 0.2s; transition-timing-function: ease-out; } 
-.botao_adi { color:var(--verdec);    }
-.botao_rem { color:var(--vermelhoc); }
-.botao_dim { color:var(--amareloc);  }
-.botao_des { color:var(--azulc);     }
-.botao_adi:hover { background-color:var(--verde);    color:var(--preto); text-shadow:2px 2px var(--cinza); }
-.botao_rem:hover { background-color:var(--vermelho); color:var(--preto); text-shadow:2px 2px var(--cinza); }
-.botao_dim:hover { background-color:var(--amarelo);  color:var(--preto); text-shadow:2px 2px var(--cinza); }
-.botao_des:hover { background-color:var(--azul);     color:var(--preto); text-shadow:2px 2px var(--cinza); }
-.bloqueado { color:var(--cinzae); }
-.liberado  { color:var(--branco); }
+.botao_adi, .botao_rem, .botao_dim, .botao_des { float:left; width:2em; height:80%; margin-top:0.2em; margin-left:0.2em; text-align:center; background-color:var(--cinza); border-style:none; border-radius:0.5em; font-weight:bold; transition: all 0.2s; transition-timing-function: ease-out;} 
+.botao_adi { color:var(--verdec);    } .botao_rem { color:var(--vermelhoc); } .botao_dim { color:var(--amareloc);  } .botao_des { color:var(--azulc);     }
+.botao_adi:hover { background-color:var(--verde);    color:var(--preto); text-shadow:2px 2px var(--cinza); border:1px solid black; }
+.botao_rem:hover { background-color:var(--vermelho); color:var(--preto); text-shadow:2px 2px var(--cinza); border:1px solid black; }
+.botao_dim:hover { background-color:var(--amarelo);  color:var(--preto); text-shadow:2px 2px var(--cinza); border:1px solid black; }
+.botao_des:hover { background-color:var(--azul);     color:var(--preto); text-shadow:2px 2px var(--cinza); border:1px solid black; }
+.bloqueado { color:var(--cinzae); } .liberado  { color:var(--branco); } .negativo { color:var(--vermelhoe); font-weight:bold; }
 
-/*********************************************************************************************************************/
+/* SLIDE - RANGE */
+.slider { -webkit-appearance:none; width:100%; height:0.5em; border-radius:5px; background:var(--cinzae); outline:none; opacity:1.0; -webkit-transition: .2s; transition: opacity .2s; }
+.slider::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:1.2em; height:1.2em; border-radius:25%; background:var(--cinzaimpar); cursor:pointer; }
+.slider::-moz-range-thumb { width:1.2em; height:1.2em; border-radius:25%; background:var(--cinzapar); cursor:pointer; }
+.slider:hover { background:var(--cinza); }
+
+/* CHECKBOX */
+label { cursor: pointer; width:100%; height:100%; }
+/* Customiza o container : https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+.container, .cont_verm, .cont_verd, .cont_azul, .cont_amar, .cont_roxo { display:block; position:relative; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+/* "Abled" */
+.container input, .cont_verm input, .cont_verd input, .cont_azul input, .cont_amar input, .cont_roxo input { position:absolute; opacity:0; height:0; width:0; }
+.checkmark { cursor:pointer; position:absolute; top:6px; left:22px; height:1em; width:1em; transition: all 0.1s; background-color:#FAFAFA; border:4px solid #A2A2A2; }
+/* "Hover" sobre "Abled" */
+.container:hover input ~ .checkmark { background-color:var(--brancoc); border:4px solid var(--cinzae);    } .cont_verm:hover input ~ .checkmark { background-color:var(--brancoc); border:4px solid var(--vermelhoe); } .cont_verd:hover input ~ .checkmark { background-color:var(--brancoc); border:4px solid var(--verdee);    } .cont_azul:hover input ~ .checkmark { background-color:var(--brancoc); border:4px solid var(--azule);     } .cont_amar:hover input ~ .checkmark { background-color:var(--brancoc); border:4px solid var(--amareloe);  } .cont_roxo:hover input ~ .checkmark { background-color:var(--brancoc); border:4px solid var(--roxoe);     } /* "Disabled" */
+.container input:disabled ~ .checkmark, .cont_verm input:disabled ~ .checkmark, .cont_verd input:disabled ~ .checkmark, .cont_azul input:disabled ~ .checkmark, .cont_amar input:disabled ~ .checkmark, .cont_roxo input:disabled ~ .checkmark { cursor:default; background-color:#EBEBEB; top:6px; left:22px; border:4px solid #C9C9C9; }
+/* Checked */
+.container input:checked ~ .checkmark { background-color:var(--cinza);    border:4px solid var(--cinzae);    } .cont_verm input:checked ~ .checkmark { background-color:var(--vermelho); border:4px solid var(--vermelhoe); } .cont_verd input:checked ~ .checkmark { background-color:var(--verde);    border:4px solid var(--verdee);    } .cont_azul input:checked ~ .checkmark { background-color:var(--azul);     border:4px solid var(--azule);     } .cont_amar input:checked ~ .checkmark { background-color:var(--amarelo);  border:4px solid var(--amareloe);  } .cont_roxo input:checked ~ .checkmark { background-color:var(--roxo);     border:4px solid var(--roxoe);     }
+/* "Hover" sobre "Checked */
+.container:hover input:checked ~ .checkmark { background-color:var(--cinza);    border:4px solid var(--preto); } .cont_verm:hover input:checked ~ .checkmark { background-color:var(--vermelho); border:4px solid var(--preto); } .cont_verd:hover input:checked ~ .checkmark { background-color:var(--verde);    border:4px solid var(--preto); } .cont_azul:hover input:checked ~ .checkmark { background-color:var(--azul);     border:4px solid var(--preto); } .cont_amar:hover input:checked ~ .checkmark { background-color:var(--amarelo);  border:4px solid var(--preto); } .cont_roxo:hover input:checked ~ .checkmark { background-color:var(--roxo);     border:4px solid var(--preto); }
+/* "" */
+.checkmark:after { content: ""; position: absolute; display: none; }
+/* Mostra o "checkmark" quando selecionado */
+.container input:checked ~ .checkmark:after { display: block; } .cont_verm input:checked ~ .checkmark:after { display: block; } .cont_verd input:checked ~ .checkmark:after { display: block; } .cont_azul input:checked ~ .checkmark:after { display: block; } .cont_amar input:checked ~ .checkmark:after { display: block; } .cont_roxo input:checked ~ .checkmark:after { display: block; }
+/* Desenha o "checkmark" */
+.container .checkmark:after, .cont_verm .checkmark:after, .cont_verd .checkmark:after, .cont_azul .checkmark:after, .cont_amar .checkmark:after, .cont_roxo .checkmark:after { left:4px; top:0px; width:5px; height:10px; border:solid var(--brancoc); border-width:0 4px 4px 0; -webkit-transform:rotate(45deg); -ms-transform:rotate(45deg); transform:rotate(45deg); } 
+
 /* NAVEGAÇÃO */
-
-#navegacao { position:fixed; z-index:1; left:0; top:-100px; width:100%; height:50px; 
-             background:rgba(0,0,0,0.7); color:white; }
-
+#navegacao { position:fixed; z-index:1; left:0; top:-100px; width:100%; height:50px; background:rgba(0,0,0,0.7); color:white; }
 #barra_superior_curta, #barra_superior, #barra_inferior { position:absolute; left:0; width:100%; }
 #barra_superior_curta, { z-index:0; top:50px; height:23px; background:url("img/0barra.png"); }
 #barra_superior, #barra_inferior { height:50px; background:url("img/0barrao.png"); }
 #barra_superior { top:0px; }
 #barra_inferior { bottom:0px; height:-23px; transform: rotate(180deg); } 
-
-.botao_aba, .botao_direita, .botao_salvar { float:left; display:inline-block; width:10%; z-index:2;
-              background-color:rgba(0,0,0,0); color:var(--branco); margin-top:0.2em;
-              padding: 16px; font-size:16px; border:none; text-align:center; cursor:pointer; transition-duration:0.1s; }
-
+.botao_aba, .botao_direita, .botao_salvar { float:left; display:inline-block; width:10%; z-index:2; background-color:rgba(0,0,0,0); color:var(--branco); margin-top:0.2em; padding: 16px; font-size:16px; border:none; text-align:center; cursor:pointer; transition-duration:0.1s; }
 .botao_aba:hover { font-size:18px; margin-top:0em; font-weight:bold; background-color:rgba(100,100,100,1); }
-
 .botao_aba_aberta { font-size:20px; margin-top:0em; font-weight:bold; }
-
 .botao_aba_aberta:hover { background-color:rgba(100,100,100,1); }
-
 .botao_salvar, .botao_direita { float:right; }
-
 .botao_salvar:hover  {  background-color:var(--verdee); font-size:18px; margin-top:0em; font-weight:bold; background-color:rgba(100,100,100,1); }
-
 .botao_salvar:active { background-color:var(--verde); border:2px solid var(--verdec); }
-
 .botao_direita:hover { font-size:18px; margin-top:0em; font-weight:bold; background-color:rgba(100,100,100,1); }
 
-
-/*********************************************************************************************************************/
 /* ABAS */
-
-#aba_inicial, #aba_rotulo, #aba_evolucao, #aba_habilidade, #aba_equipamento, #aba_exportar {
-display:block; margin-bottom:0.1%; margin-right:1%; position:absolute; width:97%; height:50%;}
-
+#aba_inicial, #aba_rotulo, #aba_evolucao, #aba_habilidade, #aba_equipamento, #aba_companheiro, #aba_exportar {
+display:block; margin-bottom:0.1%; margin-right:1%; position:absolute; width:97%; height:50%; }
 #aba_inicial { margin-top:100px; }
-#aba_rotulo, #aba_evolucao, #aba_habilidade, #aba_equipamento, #aba_exportar { margin-top:80px; }
-
-.aba { left:0px; opacity:98; filter: alpha(opacity=98); transition-property:all; transition-duration:0.2s; }
-
+#aba_rotulo, #aba_evolucao, #aba_habilidade, #aba_equipamento, #aba_companheiro, #aba_exportar { margin-top:80px; }
+.aba { left:0px; padding-left:20px; opacity:98; filter: alpha(opacity=98); transition-property:all; transition-duration:0.2s; }
 .esquerda { left:-20px; opacity:0; filter: alpha(opacity=0); z-index:-1; }
-
 .direita { left:20px; opacity:0; filter: alpha(opacity=0); z-index:-1; }
+#titulo, #contexto, #rotulo, #evolucao, #habilidade, #equipamento, #ataque, #defesa, #etc { float:left; display:block; width:100%; margin-top:0.1%; margin-bottom:0.1%; opacity: 0.98; filter: alpha(opacity=98); }
 
-#titulo, #contexto, #rotulo, #evolucao, #habilidade, #equipamento, #ataque, #defesa, #etc { 
- float:left; display:block; width:100%; margin-top:0.1%; margin-bottom:0.1%; border-radius:1em;
- opacity: 0.98; filter: alpha(opacity=98);                   }
-
-
-/*********************************************************************************************************************/
-/* ABA : INICIAL */
+/* Abas, INICIAL */
 .logo { text-align:center; margin-top:-5%; }
 #menu, #personagens, #materiais, #opcoes, .ini_nome, .ini_moedas { float:left; display:inline-block; }
-
 #menu { margin-left:5%; width:90%; height:50%; }
 #personagens, #materiais, #opcoes { margin:1em; width:30%; }
-
 #botao_importar_personagens { opacity:0; position:absolute; z-index:-1; }
-
-.ini_nome   { margin-left:0.5em; margin-top:0.5em; width:67%; }
-.ini_moedas { margin-left:0.5em; margin-top:0.5em; width:38%; }
-
+.ini_nome   { margin-left:0.5em; margin-top:0.5em; width:70%; }
+.ini_moedas { margin-left:0.5em; margin-top:0.5em; width:60%; }
 .mt { margin-top:6px; }
+#moedas_customizadas { margin-top:0.1em; display:inline-block; float:right; width:20%; margin-right:0.5em; }
 
-#moedas_customizadas { margin-top:0.1em; display:inline-block; float:left; width:20%; }
+/* Abas, RÓTULOS */
+#rotulos_coluna_a, #rotulos_coluna_b, #rotulos_coluna_c { float:left; display:inline-block; height:100%; width:30%; margin:0.5em; }
+#rotulos_coluna_a, #rotulos_coluna_b { width:30%; } #rotulos_coluna_c { width:36%; }
+
+
+#selecionados, #idiomas, #detalhador, #registro, #detalhador, #rot_idade, #rot_motivacao, .contexto_texto, .contexto_idade { float:left; width:100%; margin-bottom:0.5em;  }
+#selecionados { }
+#idiomas      { }
+#detalhador   { }
+#registro     { }
+#rot_idade { width:15%; margin-right:0.5em; }
+#rot_motivacao { width:80%; }
+.det_img   { background-color:white; display:block; margin:auto; height:15em; }
+.la { font-size:2em; display:inline-block; } .lb { font-size:1.3em; display:inline-block; } .lc { font-size:1.0em; display:inline-block; }
+
+.contexto_texto, .contexto_idade { margin-right: 0.5%; }
+.contexto_texto { width:100%; }
+.contexto_idade { width:100%; }
+
+.entrada_texto, .entrada_numero { background-color:var(--cinzapar); height:2em; border:1px solid black; font-size:1.1em; text-align:center; }
+.entrada_texto  { width:99%; }
+.entrada_numero { width:97%; }
+
+
+/* Abas, HABILIDADES */
+#possuidas, #mostrador, #seletor { float:left; display:inline-block; }
+#possuidas { margin-left: 0.5%; margin:0.5%; width: 27%; }
+#mostrador {                    margin:0.5%; width: 25%; }
+#seletor   { margin-right:0.5%; margin:0.5%; width: 44%; }
+#habilidades_disponiveis { float:left; display:block; text-align:center; }
+
+
+/* Abas, Habilidades, MOSTRADOR */
+.mostrador  { max-height:var(--listalonga); }
+.cabecalhoB { display:block; margin-top:2em; padding-top:0.5em; padding-bottom:0.25em; background-color:var(--cinzaimpar); }
+.mostrador_nome, .mostrador_tipo, .mostrador_requisito, .mostrador_mana, .mostrador_dificuldade {
+  display:block; text-align:left; font-size: 0.9em; margin-left:0.5em; }
+.mostrador_nome { font-size:1.0em; margin-top:0.2em; }
+.mostrador_tipo { margin-left:1em;  }
+
+.mostrador_texto { float:left; display:block; text-align:left; background-color:var(--branco); width:100%; 
+                   max-height:var(--habdesc); overflow-y:scroll; }
+.mostrador_descricao { display:block; margin:0.5em; }
+
+
+/* Abas, EQUIPAMENTO */
+
+
+
+/* Abas, Equipamento, QUALIDADE & MATERIAL */
+#qem_corpo { position:absolute; left:10%; top:20%; background-color:var(--branco); width:80%; border-radius:0.5em; }
+.qem_l, #qem_qualidade, #qem_material { float:left; display:inline-block; }
+.qem_l  { width:98%; margin:1% 0.5% 0.5% 1%; }
+#qem_qualidade { width:39%; }
+#qem_material  { width:59.5%; margin-left:1%; }
+.qem_check { margin-top:-18px; margin-left:-10px; }
+
+#qem_quant    { display:inline-block; float:right; width:44%; margin-left:2%;  }
+#quant_custom { display:inline-block;              width:2em;                  }
+#qem_fechar   { display:inline-block;              width:25%; margin-top:0.3em; margin-left:1em; }
+
+.qem_confirma { float:right; width:20%; }
+
+#botao_confirmar { cursor:pointer; height:2em; text-align:center; border-style:none; font-weight:bold; font-size:1em; color:var(--brancoc); border-radius:0.5em; margin-right:1em; margin-left:0.2em; display:inline-block; transition: all 0.2s; transition-timing-function: ease-out; }
+#botao_confirmar { background-color: var(--cinza); }
+#botao_confirmar:hover { background-color:var(--cinzapar); color:var(--preto); }
+
+
+/* Abas, COMPANHEIROS */
+#aba_companheiro {}
+
+#companheiro_coluna_a, #companheiro_coluna_b, #companheiro_coluna_c { float:left; display:inline-block; height:100%; width:32%; margin:0.5em; }
+
+#companheiro_coluna_a {}
+#lista_de_companheiros, #companheiro_ataque, #companheiro_defesa, #companheiro_atributos, #companheiro_habilidades, #companheiro_hab_lista, #companheiro_mostrador { float:left; width:100%; display:block; margin-bottom:0.5em; }
+#lista_de_companheiros { }
+
+#companheiro_coluna_b { }
+#companheiro_atributos   { }
+#companheiro_habilidades { }
+
+#companheiro_coluna_c { }
+#companheiro_hab_lista { }
+#companheiro_mostrador { }
+
+
+/* Abas, Companheiros, SELEÇÃO DE COMPANHEIROS */
+#cmp_corpo { position:absolute; left:15%; top:20%; width:70%; height:58%; border-radius:0.5em; background-color:var(--branco); }
+#cmp_col_a, #cmp_col_b { float:left; display:inline-block; margin:0.7em; }
+#cmp_col_a { width:60%; }
+#cmp_col_b { width:35%; }
+
+#mostrador_companheiro {  }
+.cmp_mostrador { float:left; display:block; padding:0.5em; width:100%; border:1px solid black; background-color:var(--cinzapar);}
+.cmp_confirma { margin-top:0.5em; width:98% }
+
+.caixa { border: 1px solid black; }
+
+
+
+/* POP-UP : Seleção de Companheiros e Qualidade & Material */
+.menu_pop_block { position:fixed; z-index:2; left:0; top:0; height:100%; width:100%; background-color:rgba(0,0,0,0.6);  transition: all 0.2s; transition-timing-function: ease-out; }
+.menu_pop_none { position:fixed; z-index:-1; left:0; top:0; height:100%; width:100%; opacity:0; filter: alpha(opacity=0); transition: all 0.2s; transition-timing-function: ease-out; }
+
+
+
+
 
 
 /*********************************************************************************************************************/
-/* ABA // RÓTULOS */
+/* GENÉRICOS */
 
-#contexto_jogador, #contexto_personagem, #contexto_idade, #contexto_motivacao { 
-  float:left; display:inline-block; margin:0.25em; }
-#contexto_jogador    { width:30%; }
-#contexto_personagem { width:30%; }
-#contexto_idade      { width:7%; }
-#contexto_motivacao  { width:30%; }
-
-.entrada_texto, .entrada_numero { background-color:var(--cinzapar); height:2em; border:1px solid black; font-size:1.1em; text-align:center; }
-.entrada_texto  { width:99.5%; }
-.entrada_numero { width:98%;   }
-
-label { cursor: pointer; width:100%; height:100%; }
+.titulo    { text-align:center; margin-top:0.5em; font-size: 1.5em; color:var(--branco);}
+.cabecalho, .cabecalhim, .rodape { display:block; float:left; width:100%; background-color:var(--cinzacab); font-size:1.2em; 
+                      padding-top:0.2em; padding-bottom:0.2em; font-weight:bold; color:var(--branco); }
+.cabecalho, .cabecalhim { text-align:center; }
+.cabecalhim { font-size:0.8em; }
+.rodape, .rodapezim { text-align:center; }
+.rodapezim { float:left; display:block; width:100%; height:1.3em; background-color:var(--cinzacab); }
 
 
-/* RÓTULOS */
-#rotulo, #selecionados, #detalhador, #registro, #detalhador .det_centro, .det_esquerda, .det_direita, .det_nome, .det_imagem, .det_atributo, .det_detalhe, 
-.det_detalhe_longo, .det_descricao, .det_descricao_antec, .det_descricao_extra_longa { float:left; display:inline-block; }
-#rotulo       { width:100%; }
-#selecionados { margin-left: 0.5%; margin:0.5%; width: 26%; }
-#detalhador   {                    margin:0.5%; width: 35%; }
-#registro     { margin-right:0.5%; margin:0.5%; width: 36%; }
 
-/* RÓTULOS / SELECIONADOS */
-#rot_sel_cab_tipo, #rot_sel_cab_nome { float:left; display:inline-block; text-align:left;  }
-#rot_sel_cab_tipo { width:36%; margin-left:1.5em; }
-#rot_sel_cab_nome { width:48%; }
+
+
+
+
+
+
 
  
-/* RÓTULOS / DETALHADOR */
-#detalhador { height:15em; max-height:15em; }
-.det_centro, .det_esquerda, .det_direita { background-color:var(--cinzapar); height:inherit; }
-.det_centro   { width:100%; }  .det_esquerda { width:40%;  } .det_direita  { width:60%;  }
-/**/
-.det_nome        { width:100%; background-color:var(--cinzacab); font-size:1.1em; }
-.det_nomeTexto   { text-align:left; margin-left:2em;  }
-.det_imagem      { display: block; height:15em; }
-.det_atributo        { width:100%; margin-left:0.5em; margin-top:0.25em; vertical-align:middle; }
-.det_detalhe         { width:90%; margin-left:1em; margin-right:0.5em; font-size:1.0em; }
-.det_detalhe_longo   { width:100%%; margin-left:1em; margin-right:0.5em; font-size:0.9em; 
-                               overflow-y:scroll; max-height:5em; }
-.det_descricao { width:90%; margin-left:1em; margin-right:1em; font-size:0.85em; }
-.det_descricao_antec { width:98%; margin-right:0.5em; margin-top:0.5em; 
-                       font-size:1em; max-height:14em; overflow-x:hidden; overflow-y:scroll; }
-.det_descricao_extra_longa { width:95%; margin-right:0.5em; margin-top:0.5em; 
-                             max-height:11em; overflow-y:scroll; font-size:0.8em; }
-.det_descricao_completa { width:93%; margin-left:1em; margin-right:0.5em; margin-top:0.5em; 
-                          max-height:16em; overflow-y:scroll; font-size:0.9em; } 
-.det_primeira        { font-size:1.5em; }
 
-/* RÓTULOS / REGISTRO */
-.reg_sec_tipo, .reg_sec_nome, .reg_sec_nome_longo, #reg_cab_nome, #reg_cab_atributos, #reg_cab_atributo, #reg_cab_habilidade, #reg_cab_corpo, .reg_lst_botao, .reg_lst_nome, .reg_lst_atributos, .reg_lst_atributo, 
-.reg_lst_habilidade, .reg_lst_corpo, .reg_lst_org, .reg_lst_org_longo, .reg_lst_resumo { 
-   float:left; display:inline-block; }
-.reg_sec_tipo       { width:38%; margin-left:1em; margin-top:0.4em; }
-.reg_sec_nome        { width:45%; margin-top:0.4em; }
-.reg_sec_nome_longo  { width:45%; font-size:0.8em; }
-.reg_sec_remover     { width:8%; }
-#reg_cab_nome        { width:25%; margin-left:0.5em; text-align:left; margin-left:1.5em; }
-#reg_cab_atributos   { width:29%; text-align:center; }
-#reg_cab_atributo    { width:25%; }
-#reg_cab_habilidade  { width:38%; text-align:center; }
-#reg_cab_corpo       { width:63%; text-align:center; }
-.reg_lst_botao       { width:7%;                                      margin-top:0.2em; }
-.reg_lst_nome        { width:24%;                    font-size:1em;   margin-top:0.4em;  margin-left:0.2em; }
-.reg_lst_atributos   { width:30%; text-align:center; font-size:1em;   margin-top:0.5em; }
-.reg_lst_atributo    { width:25%;                    font-size:1em; }
-.reg_lst_habilidade  { width:37%; text-align:center; font-size:0.9em; margin-top:0.6em; }
-.reg_lst_corpo       { width:63%; text-align:center; font-size:0.8em; margin-top:0.6em; }
-.reg_lst_org,.reg_lst_org_longo { width:42%; font-size:0.8em; margin-left:0.5em; }
-.reg_lst_org { margin-top:0.6em; } .reg_lst_org_longo { margin-top:0.1em; }
-.reg_lst_resumo      { width:48%;                    font-size:0.7em; margin-top:0.2em; }
-/**/
-.escolha { display: block; height:2em; margin:0.1%; text-align:center; font-size:1.1em;}
-.coluna { float:left; display:inline-block; width:100%; text-align:center; width:14%; margin:0.5%; background-color:var(--branco);}
 
 
 /*********************************************************************************************************************/
 /* ABA // EVOLUÇÃO */
-
 #nivel, #vida, #mana, #atributo, #vital { float:left; display:inline-block; margin:0.5%; }
-
 #nivel { width:32%; }
-#vida  { width:32.5%; }
-#mana  { width:32.5%; }
+#vida  { width:32%; }
+#mana  { width:32%; }
 
 #atributo { width:99%; }
 
 #vital { width:99%; }
 
 #vida_mana { text-align:center; color:var(--branco); height:2.3em; }
-#vida_texto { color:var(--vermelhoe); }
-#mana_texto { color:var(--azule); }
 
-#vida_total, #mana_total { padding-top:0.4em; font-size:1.1em; }
+.nvm { float:left; display:inline-block; width:100%; padding-top:0.2em; padding-bottom:0.2em; text-align:center; font-size:1.2em; height:32px; background-color:var(--cinzaimpar);}
 
-.nvm { float:left; display:inline-block; background-color:var(--cinzapar); height:2em; width:100%; border:1px solid black; font-size:1.1em; text-align:center;}
+#vida_total, #mana_total { padding-top:0.4em; padding-bottom:0em; }
 
 #range_nivel { float:left; display:inline-block; margin-top:0.4em; }
 #nivel_de_personagem  { }
@@ -244,86 +303,13 @@ label { cursor: pointer; width:100%; height:100%; }
 .bonus, .const { font-size:0.7em; } .bonus { text-decoration:underline; }
 .margem { margin:0.5em; }
 
-/* Atributos & Evolução */
-.linha    { display:block; }
-.atb_cab_nome, .atb_cab_texto, .atb_cab_caixa,.atb_cab_bonus, .atb_col_nome, .atb_col_texto, .atb_col_caixa,.atb_col_bonus,
-.evo_cab_nome, .evo_cab_caixa, .evo_col_nome, .evo_col_caixa { display:inline-block; text-align:center; float:left; }
 
-/* Atributos */
-.atb_col_nome, .atb_col_texto, .atb_col_caixa, .atb_col_bonus, .evo_col_nome, .evo_col_caixa { margin-top:0.5em; }
-.atb_cab_nome, .atb_col_nome { width:10%; } 
-.atb_cab_texto, .atb_cab_caixa, .atb_col_texto, .atb_col_caixa { width:7%;  }
-.atb_cab_bonus, .atb_col_bonus { width:15%; }
 
-/* Evolução */
-.evo_cab_nome, .evo_col_nome   { width:15%; }
-.evo_col_nome { margin-left:1em; }
-.evo_cab_caixa, .evo_col_caixa { width: 5%; }
 
 
 /*********************************************************************************************************************/
-/* ABA // HABILIDADE */
-
-#possuidas, #mostrador, #seletor { float:left; display:inline-block;}
-#possuidas { margin-left: 0.5%; margin:0.5%; width: 27%; }
-#mostrador {                    margin:0.5%; width: 25%; }
-#seletor   { margin-right:0.5%; margin:0.5%; width: 45%; }
-
-#habilidades_possuidas_lista { float:left; display:block; overflow-x:hidden; overflow-y:scroll; width:100%; background-color:var(--cinzae); }
-
-/* HABILIDADE / POSSUIDAS */
-#hab_pos_cab_nome, #hab_pos_cab_dificuldade, #hab_pos_cab_mana, .hab_pos_elm_nome, .hab_pos_elm_nomelongo, 
-.hab_pos_elm_dificuldade, .hab_pos_elm_mana  { float:left; text-align:left; display:inline-block; }
-.hab_pos_elm_nome, .hab_pos_elm_nomelongo, .hab_pos_elm_dificuldade, .hab_pos_elm_mana { margin-top:0.5em; }
-#hab_pos_cab_nome, #hab_pos_cab_dificuldade, #hab_pos_cab_mana  { font-size:1em; }
-#hab_pos_cab_nome                                               { width: 59%; margin-left:0.5em;}
-#hab_pos_cab_dificuldade, #hab_pos_cab_mana                     { width: 12.5%; }
-.hab_pos_elm_nome, .hab_pos_elm_nomelongo                       { width: 61%; text-align: left;  margin-left:0.5em;  }   
-.hab_pos_elm_nomelongo                                          { width: 61.7%; font-size: 0.8em; margin-top: 0.6em;}
-.hab_pos_elm_dificuldade, .hab_pos_elm_mana                     { width: 12.5%; text-align: center; }
-/**/
-#habilidades_disponiveis { float:left; display:block; text-align:center; }
-
-/* HABILIDADE / MOSTRADOR */
-.mostrador  { max-height:var(--listalonga); }
-.cabecalhoB { display:block; margin-top:2em; padding-top:0.5em; padding-bottom:0.25em; background-color:var(--cinzapar); }
-.mostrador_nome, .mostrador_tipo, .mostrador_requisito, .mostrador_mana, .mostrador_dificuldade {
-  display:block; text-align:left; font-size: 0.9em; margin-left:0.5em; }
-.mostrador_nome           { font-size:1.0em; margin-top:0.2em; }
-.mostrador_tipo           { margin-left:1em;  }
-
-.mostrador_texto { float:left; display:block; text-align:left; background-color:var(--branco); width:100%; 
-                   max-height:var(--habdesc); overflow-y:scroll; }
-.mostrador_descricao { display:block; margin:0.5em; }
-
-/* HABILIDADE / SELETOR */
-#lista_de_habilidades    { }
-
-#hab_sel_cab_nome, #hab_sel_cab_categoria, #hab_sel_cab_tipo, #hab_sel_cab_dificuldade, #hab_sel_cab_mana {
-  float:left; display: inline-block; font-size:1.0em; text-align:center; }
-#hab_sel_cab_nome        { width: 50%; text-align:left; margin-left:1em; }
-#hab_sel_cab_categoria   { width: 13.5%; }
-#hab_sel_cab_tipo        { width: 10%; }
-#hab_sel_cab_dificuldade { width:  9%; }
-#hab_sel_cab_mana        { width:  9%; }
-
-
-#habilidade #seletor .adicionar, .hab_sel_nome, .hab_sel_categoria, .hab_sel_tipo, .hab_sel_mana, .hab_sel_dificuldade 
- { float:left; display: inline-block; font-size:1.0em; text-align:center; margin-top:0.5em;}
-#habilidade #seletor .adicionar   { width:  7%; }
-.hab_sel_nome        { width: 47%; text-align:left; margin-left:0.5em; }
-.hab_sel_categoria   { width: 15%; font-size:0.7em; margin-top: 0.7em; text-align:center; }
-.hab_sel_tipo        { width: 10%; font-size:0.7em; margin-top: 0.7em; text-align:center; }
-.hab_sel_dificuldade { width:  9%; }
-.hab_sel_mana        { width:  9%; }
-
-#habilidade #seletor #cabecalho .nome { width: 43%; margin-left:7%;}
-#habilidade #seletor #cabecalho .tipo { width: 25%; font-size:1em; }
-
-
-/*********************************************************************************************************************/
-/* ABA : EQUIPAMENTO */
-#inventario, #mostruario, #ataque, #defesa, #movimentacao { float:left; display: inline-block; margin:0.5%; background-color:var(--cinza); } 
+/* Abas / EQUIPAMENTO */
+#inventario, #mostruario, #ataque, #defesa, #movimentacao { float:left; display: inline-block; margin:0.2%; } 
 #inventario { width:35%; }
 #mostruario { width:63%; }
 
@@ -331,286 +317,50 @@ label { cursor: pointer; width:100%; height:100%; }
 #defesa {                    width:36%; }
 #movimentacao {              width:26%; }
 
-/* EQUIPAMENTO INVENTÁRIO */
-#inventario #cabecalho { float:left; display:block; width:100%; }
-#lista_do_inventario   { width:100%; }
-
-#eqp_inv_cab_nome, #eqp_inv_cab_peso, #eqp_inv_cab_custo { float:left; display:inline-block; text-align:center; }
-#eqp_inv_cab_nome   { width: 52%; text-align:left; margin-left:0.5em; }
-#eqp_inv_cab_peso   { width: 14%; }
-#eqp_inv_cab_custo  { width: 14%; } 
-
-.eqp_inv_elm_nome, .eqp_inv_elm_nomelongo, .eqp_inv_elm_peso, .eqp_inv_elm_custo, .eqp_inv_elm_botao {
-  float:left; display:inline-block; text-align:center; }
-.eqp_inv_elm_nome, .eqp_inv_elm_nomelongo { width: 48%; text-align:left; margin-left:0.5em; margin-top:0.5em; }
-.eqp_inv_elm_nomelongo { font-size:0.7em; margin-top:0.7em; }
-.eqp_inv_elm_peso     { width: 12%; margin-top:0.5em; }
-.eqp_inv_elm_custo    { width: 14%; margin-top:0.5em; }
-.eqp_inv_elm_botao    { width: 12%; margin-top:0.5em;  }
 #moedas, #equipamento_extra { float:left; display:block; width:100%; }
 #moedas { text-align:center; }
 
-/* EQUIPAMENTO / MOSTRUÁRIO */
+/* Abas/ Equipamento/ MOSTRUÁRIO */
 #cabecalho_do_mostruario { }
 #lista_do_mostruario     { }
 .adicionar_item_do_mostruario { float:left; display: inline-block; width: 5%; text-align: center; height:1em;  }
 
-/* EQUIPAMENTO / MOSTRUÁRIO / ARMA */
-#eqp_arm_cab_custo, #eqp_arm_cab_peso, #eqp_arm_cab_dano, #eqp_arm_cab_tipo, #eqp_arm_cab_fn, #eqp_arm_cab_fn, #eqp_arm_cab_alcance, #eqp_arm_cab_observacoes, .eqp_arm_elm_custo, .eqp_arm_elm_peso, .eqp_arm_elm_dano, 
-.eqp_arm_elm_tipo, .eqp_arm_elm_fn, .eqp_arm_elm_alcance { float:left; text-align:center; }
-#eqp_arm_cab_nome, #eqp_arm_cab_custo, #eqp_arm_cab_peso, #eqp_arm_cab_dano, #eqp_arm_cab_tipo, #eqp_arm_cab_fn, #eqp_arm_cab_fn, #eqp_arm_cab_alcance, #eqp_arm_cab_observacoes, 
-.eqp_arm_elm_nome, .eqp_arm_elm_nomec, .eqp_arm_elm_custo, .eqp_arm_elm_peso, .eqp_arm_elm_dano, .eqp_arm_elm_tipo, 
-.eqp_arm_elm_fn, .eqp_arm_elm_alcance, .eqp_arm_elm_observacoes { display:inline-block; font-size:1em; }
-.eqp_arm_elm_nome, .eqp_arm_elm_nomec, .eqp_arm_elm_custo, .eqp_arm_elm_peso, .eqp_arm_elm_dano, .eqp_arm_elm_tipo, 
-.eqp_arm_elm_fn, .eqp_arm_elm_alcance  { margin-top:0.5em; }
-#eqp_arm_cab_nome, .eqp_arm_elm_nome               { float:left;  text-align:left; }
-#eqp_arm_cab_nome                                  { width:  23.5%; margin-left:1.5em; } 
-.eqp_arm_elm_nome                                  { width:    23%; margin-left:0.5em; }
-#eqp_arm_cab_custo, .eqp_arm_elm_custo             { width:   8%; }
-#eqp_arm_cab_peso                                  { width:   7%; }
-.eqp_arm_elm_peso                                  { width: 7.5%; }
-#eqp_arm_cab_dano, .eqp_arm_elm_dano               { width:   9%; }
-#eqp_arm_cab_tipo                                  { width:12.1%; }
-.eqp_arm_elm_tipo                                  { width:12.5%; }
-#eqp_arm_cab_fn, .eqp_arm_elm_fn                   { width:   7%; }
-#eqp_arm_cab_alcance, .eqp_arm_elm_alcance         { width:  10%; }
-#eqp_arm_cab_observacoes, .eqp_arm_elm_observacoes { width:  15%; }
-#eqp_arm_cab_observacoes                           {                  margin-left:0.5em;                   }
-.eqp_arm_elm_observacoes                           { font-size:0.7em; margin-left:  1em; margin-top:0.1em; }
+/* Aba/ Equipamento/ ATAQUES */
+#lista_de_ataques { width:100%; }
 
-/* EQUIPAMENTO / MOSTRUÁRIO / MUNIÇÃO & MUNDANO */
-#eqp_mun_cab_nome, #eqp_mun_cab_custo, #eqp_mun_cab_peso, #eqp_mund_cab_descricao,
-.eqp_mun_elm_nome, .eqp_mun_elm_custo, .eqp_mun_elm_peso, .eqp_mun_elm_descricao, .eqp_mun_elm_descricaolonga { 
-  float:left; display:inline-block; text-align:left; }
-.eqp_mun_elm_nome, .eqp_mun_elm_custo, .eqp_mun_elm_peso, .eqp_mun_elm_descricao { margin-top:0.5em; }
-#eqp_mun_cab_nome, .eqp_mun_elm_nome               { width: 29%; text-align:left; }
-#eqp_mun_cab_nome                                  { margin-left:1.5em; }
-.eqp_mun_elm_nome                                  { margin-left:0.5em; }
-#eqp_mun_cab_custo, 
-.eqp_mun_elm_custo     { width: 8%; text-align:center; }
-#eqp_mun_cab_peso,
-.eqp_mun_elm_peso      { width: 8%; text-align:center; }
-.eqp_mun_elm_descricao, .eqp_mun_elm_descricaolonga { width: 49%;  text-align:left; }
-.eqp_mun_elm_descricao      { font-size:0.8em; margin-top:0.8em;  }
-.eqp_mun_elm_descricaolonga { font-size:0.7em; margin-top:0.3em; }
 
-/* EQUIPAMENTO / MOSTRUÁRIO / MUSICAL */
-#eqp_mus_cab_nome, #eqp_mus_cab_custo, #eqp_mus_cab_fn, #eqp_mus_cab_peso, #eqp_mund_cab_descricao,
-.eqp_mus_elm_nome, .eqp_mus_elm_custo, .eqp_mus_elm_fn, .eqp_mus_elm_peso, .eqp_mus_elm_descricao, 
-.eqp_mus_elm_descricaolonga { float:left; display:inline-block; text-align:left; }
-.eqp_mus_elm_nome, .eqp_mus_elm_custo, .eqp_mus_elm_fn, .eqp_mus_elm_peso, .eqp_mus_elm_descricao { margin-top:0.5em; }
-#eqp_mus_cab_nome  { width: 20.5%; text-align:left; }
-.eqp_mus_elm_nome  { width: 20%;   text-align:left; }
-#eqp_mus_cab_nome                                  { margin-left:1.5em; }
-.eqp_mus_elm_nome                                  { margin-left:0.5em; }
-#eqp_mus_cab_custo, 
-.eqp_mus_elm_custo     { width: 7%; text-align:center; }
-#eqp_mus_cab_fn, 
-.eqp_mus_elm_fn        { width: 7%; text-align:center; }
-#eqp_mus_cab_peso,
-.eqp_mus_elm_peso      { width: 7%; text-align:center; }
-.eqp_mus_elm_descricao, .eqp_mus_elm_descricaolonga { width: 53%;  text-align:left; }
-.eqp_mus_elm_descricao      { font-size:0.8em; margin-top:0.8em;  }
-.eqp_mus_elm_descricaolonga { font-size:0.7em; margin-top:0.3em; }
-
-/* EQUIPAMENTO / MOSTRUÁRIO / DEFESA */
-#eqp_def_cab_nome, #eqp_def_cab_custo, #eqp_def_cab_peso, #eqp_def_cab_defesa, #eqp_def_cab_fn, #eqp_def_cab_observacoes,
-.eqp_def_elm_nome, .eqp_def_elm_nomec, .eqp_def_elm_nomec, .eqp_def_elm_custo, .eqp_def_elm_peso, .eqp_def_elm_defesa, 
-.eqp_def_elm_fn, .eqp_def_elm_observacoes { float:left; text-align:center; display:inline-block; }
-.eqp_def_elm_nome, .eqp_def_elm_nomec, .eqp_def_elm_nomec, .eqp_def_elm_custo, .eqp_def_elm_peso, .eqp_def_elm_defesa, 
-.eqp_def_elm_fn, .eqp_def_elm_observacoes { margin-top:0.5em;  }
-#eqp_def_cab_nome, .eqp_def_elm_nome               { width: 25%; text-align:left; }
-#eqp_def_cab_nome                                  { margin-left:1.5em; }
-.eqp_def_elm_nome                                  { margin-left:0.5em; }
-#eqp_def_cab_custo, .eqp_def_elm_custo             { width: 10%; }
-#eqp_def_cab_peso                                  { width:9.5%; }
-.eqp_def_elm_peso                                  { width: 10%; }
-#eqp_def_cab_defesa, .eqp_def_elm_defesa           { width: 10%; }
-#eqp_def_cab_fn, .eqp_def_elm_fn                   { width: 10%; }
-#eqp_def_cab_observacoes, .eqp_def_elm_observacoes { width: 25%; text-align:left; }
-
-/* EQUIPAMENTO / MOSTRUÁRIO / CONJURAÇÃO */
-#eqp_cnj_cab_nome, #eqp_cnj_cab_custo, #eqp_cnj_cab_peso, #eqp_cnj_cab_fn, #eqp_cnj_cab_observacoes,
-.eqp_cnj_elm_nome, .eqp_cnj_elm_custo, .eqp_cnj_elm_peso, .eqp_cnj_elm_fn, .eqp_cnj_elm_observacoes{ 
-  float:left; display:inline-block; text-align:center; }
-.eqp_cnj_elm_nome, .eqp_cnj_elm_custo, .eqp_cnj_elm_peso, .eqp_cnj_elm_fn { margin-top:0.5em; }
-#eqp_cnj_cab_nome, .eqp_cnj_elm_nome { text-align:left; }
-#eqp_cnj_cab_nome { width: 20%; margin-left:1.5em; }
-.eqp_cnj_elm_nome { width: 19%; margin-left:0.5em; }
-#eqp_cnj_cab_custo, #eqp_cnj_cab_peso, .eqp_cnj_elm_custo, .eqp_cnj_elm_peso { width:7.5%; } 
-#eqp_cnj_cab_fn, .eqp_cnj_elm_fn { width:  5%; }
-#eqp_cnj_cab_observacoes, .eqp_cnj_elm_observacoes { width: 53%; }
-.eqp_cnj_elm_observacoes { text-align:left; font-size:0.7em; margin-top:0.3em; }
-
-/* EQUIPAMENTO / MOSTRUÁRIO / POÇÃO */
-#eqp_poc_cab_nome, #eqp_poc_cab_custo, #eqp_poc_cab_peso, #eqp_poc_cab_raridade, #eqp_poc_cab_descricao,
-.eqp_poc_elm_nome, .eqp_poc_elm_custo, .eqp_poc_elm_peso, .eqp_poc_elm_raridade, .eqp_poc_elm_descricao { 
-  float:left; display:inline-block; text-align:center; }
-.eqp_poc_elm_nome, .eqp_poc_elm_custo, .eqp_poc_elm_peso, .eqp_poc_elm_raridade { margin-top:0.5em; }
-#eqp_poc_cab_nome, .eqp_poc_elm_nome { text-align:left; }
-#eqp_poc_cab_nome                    { width: 32%;  margin-left:1.5em; }
-.eqp_poc_elm_nome                    { width: 32%;  margin-left:0.5em; }
-#eqp_poc_cab_custo, #eqp_poc_cab_peso, .eqp_poc_elm_custo, .eqp_poc_elm_peso { width:8%; }
-#eqp_poc_cab_raridade, .eqp_poc_elm_raridade { width: 10%; }
-#eqp_poc_cab_descricao, .eqp_poc_elm_descricao { width: 35%; text-align:left; margin-left:0.8em; }
-.eqp_poc_elm_descricao { margin-top:0.3em; font-size:0.7em; }
-
-/* ATAQUES */
-#lista_de_ataques { width:100%; height:8.5em; }
-#atq_cab_nome, #atq_cab_tipo, #atq_cab_alcance, #atq_cab_dano, .atq_elm_nome, .atq_elm_tipo, .atq_elm_alcance, 
-.atq_elm_dano { float:left; display:inline-block; text-align: center; }
-.atq_elm_nome, .atq_elm_tipo, .atq_elm_alcance, .atq_elm_dano { margin-top:0.5em; }
-#atq_cab_nome, .atq_elm_nome  { text-align: left; margin-left:0.5em; }
-#atq_cab_nome     { width: 43%; }
-.atq_elm_nome     { width: 45%; }
-#atq_cab_tipo     { width: 29%; }
-.atq_elm_tipo     { width: 30%; }
-#atq_cab_alcance, .atq_elm_alcance, #atq_cab_dano, .atq_elm_dano { width: 10%; }
-
-/* DEFESAS */
-#def_cab_nome, #def_cab_total, #def_cab_extra, .def_elm_nome, .def_elm_valor, .def_elm_extra {
-  float:left; text-align:left; display:inline-block; }
-#def_cab_nome,  .def_elm_nome  { width:30%; margin-left:0.5em;}
-#def_cab_total, .def_elm_valor { width:34%; }
-#def_cab_extra, .def_elm_extra { width:31%; }
-.def_elm_nome,  .def_elm_valor, .def_elm_extra  { margin-top:0.5em; }
-
-/* MOVIMENTAÇÃO : CARGA & DESLOCAMENTO & INICIATIVA */
-.crd_elm_nome, .crd_elm_valor { float:left; text-align:left; display:inline-block; margin-top:0.5em; }
-.crd_elm_nome  { margin-left:0.5em; width:40%; }
-.crd_elm_valor { width:55%; }
 
 
 /*********************************************************************************************************************/
 /* ABA / EXPORTAR */
-
-#aba_exportar { }
 #lista_de_formatos, #pre_visualizador { display:inline-block; float:left; margin:0.5em; }
-
 #lista_de_formatos { width: 22%; }
 #pre_visualizador { z-index:1; position:absolute; width: 75%; }
-#visualizador { height:28em; background-color:var(--branco); }
-
-.lf_nome { display:inline-block; float:left; margin-top:0.5em; margin-left:0.5em; width:83%; }
-
+#visualizador { height:36em; background-color:var(--branco); }
+.lf_nome { display:inline-block; float:left; margin-top:0.5em; margin-left:0.5em; }
 #exportador-instrucoes { margin:1em; padding-top:2em; }
-
 #exportador-conteudo { background-color: var(--branco); width:100%; height:95%; overflow-y: hidden; }
-
 #exportador-texto { width:95%; height:90%; float:left; display:block; white-space:pre; margin:2%;
                     font-family: "Courier New", Courier, monospace; resize:none; overflow: auto; }
-
 #exportador-imagem { background-color: var(--branco); width:99%; height:93%; }
-
 #exportador-scroll { overflow-y: scroll; width:100%; height:100%; }
-
 #ficha_desenhada { width:944px; height:1344px;}
-
 #exportador-copiar { width:100%; height:auto; margin:2% float:left; display:block; }
 
 
-/**********************************************************************************************************************/
-/* QUALIDADE & MATERIAL */
 
-#exportador-item { background-color: var(--branco); margin: 5% auto 15% auto; width:70%; height: 80%; 
-                   overflow-y: hidden;  }
-
-.eqp_qld_botao, .eqp_qld_nome, .eqp_qld_custo, .eqp_qld_dano, .eqp_qld_ataque, .eqp_qld_fndef, .eqp_qld_defesa, .eqp_qld_bonus,
-.eqp_mtr_botao, .eqp_mtr_nome, .eqp_mtr_custo, .eqp_mtr_mult, .eqp_mtr_bonus, .eqp_mtr_fn, .eqp_mtr_peso, .eqp_mtr_obs 
- { float:left; margin-top:0.4em; }
-
-.eqp_qld_botao  { width:5%; }
-.eqp_qld_nome   { width:30%; }
-.eqp_qld_custo  { width:10%; }
-.eqp_qld_dano   { width:10%; }
-.eqp_qld_ataque { width:10%; }
-.eqp_qld_fndef  { width:10%; }
-.eqp_qld_defesa { width:10%; }
-.eqp_qld_bonus  { width:10%; }
-
-.eqp_mtr_botao { width:5%; }
-.eqp_mtr_nome  { width:30%; }
-.eqp_mtr_custo { width:10%; }
-.eqp_mtr_mult  { width:10%; }
-.eqp_mtr_bonus { width:10%; }
-.eqp_mtr_fn    { width:10%; }
-.eqp_mtr_peso  { width:10%; }
-.eqp_mtr_obs   { width:10%; }
 
 
 /*********************************************************************************************************************/
-/* SLIDE - RANGE */
-.slider {
-  -webkit-appearance:none; width:100%; height:0.5em; border-radius:5px; background:var(--cinzae);
-  outline:none; opacity:1.0; -webkit-transition: .2s; transition: opacity .2s; }
-
-.slider::-webkit-slider-thumb { 
-  -webkit-appearance:none; appearance:none; width:1.2em; height:1.2em; border-radius:25%; 
-  background:var(--cinzapar); cursor:pointer; }
-
-.slider::-moz-range-thumb { width:1.2em; height:1.2em; border-radius:25%; background:var(--cinzaimpar); cursor:pointer; }
-
-.slider:hover { background:var(--cinza); }
+/* ABA / COMPANHEIROS */
 
 
-/*********************************************************************************************************************/
-/* CHECKBOX */
 
-/* Customiza o container : https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
-.container, .cont_verm, .cont_verd, .cont_azul, .cont_amar, .cont_roxo {
-  display:block; position:relative;
-  -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
 
-/* "Abled" */
-.container input, .cont_verm input, .cont_verd input, .cont_azul input, .cont_amar input, .cont_roxo input {
-  position:absolute; opacity:0; height:0; width:0; }
-.checkmark { cursor:pointer; position:absolute; top:0; left:8px; height:1em; width:1em; transition: all 0.2s;
-             background-color:#FAFAFA; border:2px solid #A2A2A2; }
 
-/* "Hover" sobre "Abled" */
-.container:hover input ~ .checkmark { background-color:var(--brancoc); border:2px solid var(--cinzae);    }
-.cont_verm:hover input ~ .checkmark { background-color:var(--brancoc); border:2px solid var(--vermelhoe); }
-.cont_verd:hover input ~ .checkmark { background-color:var(--brancoc); border:2px solid var(--verdee);    }
-.cont_azul:hover input ~ .checkmark { background-color:var(--brancoc); border:2px solid var(--azule);     }
-.cont_amar:hover input ~ .checkmark { background-color:var(--brancoc); border:2px solid var(--amareloe);  }
-.cont_roxo:hover input ~ .checkmark { background-color:var(--brancoc); border:2px solid var(--roxoe);     }
 
-/* "Disabled" */
-.container input:disabled ~ .checkmark, .cont_verm input:disabled ~ .checkmark, 
-.cont_verd input:disabled ~ .checkmark, .cont_azul input:disabled ~ .checkmark, 
-.cont_amar input:disabled ~ .checkmark, .cont_roxo input:disabled ~ .checkmark{ 
-  cursor:default; background-color:#EBEBEB; border:2px solid #C9C9C9; }
 
-/* Checked */
-.container input:checked ~ .checkmark { background-color:var(--cinza);    border:2px solid var(--cinzae);    }
-.cont_verm input:checked ~ .checkmark { background-color:var(--vermelho); border:2px solid var(--vermelhoe); }
-.cont_verd input:checked ~ .checkmark { background-color:var(--verde);    border:2px solid var(--verdee);    }
-.cont_azul input:checked ~ .checkmark { background-color:var(--azul);     border:2px solid var(--azule);     }
-.cont_amar input:checked ~ .checkmark { background-color:var(--amarelo);  border:2px solid var(--amareloe);  }
-.cont_roxo input:checked ~ .checkmark { background-color:var(--roxo);     border:2px solid var(--roxoe);     }
 
-/* "Hover" sobre "Checked */
-.container:hover input:checked ~ .checkmark { background-color:var(--cinza);    border:2px solid var(--preto); }
-.cont_verm:hover input:checked ~ .checkmark { background-color:var(--vermelho); border:2px solid var(--preto); }
-.cont_verd:hover input:checked ~ .checkmark { background-color:var(--verde);    border:2px solid var(--preto); }
-.cont_azul:hover input:checked ~ .checkmark { background-color:var(--azul);     border:2px solid var(--preto); }
-.cont_amar:hover input:checked ~ .checkmark { background-color:var(--amarelo);  border:2px solid var(--preto); }
-.cont_roxo:hover input:checked ~ .checkmark { background-color:var(--roxo);     border:2px solid var(--preto); }
 
-/* "" */
-.checkmark:after { content: ""; position: absolute; display: none; }
 
-/* Mostra o "checkmark" quando selecionado */
-.container input:checked ~ .checkmark:after { display: block; }
-.cont_verm input:checked ~ .checkmark:after { display: block; }
-.cont_verd input:checked ~ .checkmark:after { display: block; }
-.cont_azul input:checked ~ .checkmark:after { display: block; }
-.cont_amar input:checked ~ .checkmark:after { display: block; }
-.cont_roxo input:checked ~ .checkmark:after { display: block; }
-
-/* Desenha o "checkmark" */
-.container .checkmark:after, .cont_verm .checkmark:after, .cont_verd .checkmark:after, 
-.cont_azul .checkmark:after, .cont_amar .checkmark:after, .cont_roxo .checkmark:after {
-  left:4px; top:0px; width:5px; height:10px; border:solid var(--brancoc); border-width:0 3px 3px 0;
-  -webkit-transform:rotate(45deg); -ms-transform:rotate(45deg); transform:rotate(45deg);   } 
 

@@ -1,642 +1,190 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <title> MightyBlade - Forja de Personagens </title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-<!- ->
-  <div id="barra_superior"> </div>
-  <div id="navegacao">
-    <div id="aba1" class="botao_aba" onmouseup="abrirAba(1)"> Principal </div>
-    <div id="aba2" class="botao_aba" onmouseup="abrirAba(2)"> Evolução </div>
-    <div id="aba3" class="botao_aba" onmouseup="abrirAba(3)"> Habilidades </div>
-    <div id="aba4" class="botao_aba" onmouseup="abrirAba(4)"> Equipamentos </div>
-    <div id="aba5" class="botao_aba" onmouseup="abrirAba(5)"> Exportar </div>
-    <div id="abaC" class="botao_direita" onmouseup="voltarParaTelaInicial()"> Voltar </div>
-    <div id="abaS" class="botao_salvar" onmouseup="salvarPersonagem()"> Salvar </div>
-  </div>
-  <div id="barra_inferior"> </div>
-<!- ->
-<!- ->
-<!- ->
-    <div id="aba_inicial" class="aba">
-      <div id="logoMB" class="logo">
-        <a href="https://coisinhaverde.com.br/mightyblade/" target="_blank">
-          <img onmouseover="carregarHTMLInicialNoDetalhador(-1)" src="img/0logo.png" alt="Mighty Blade""> 
-      </a> </div>
-      <div id="menu">
+	<head>
+		<title> MightyBlade - Forja de Personagens </title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
 
-        <div id="personagens">
-          <div class="cabecalho"> <b> Personagens </b> </div>
-          <div id="lista_de_personagens"class="lista_curta">  </div>
+<!- ->
+		<div id="barra_superior"> </div>
+		<div id="navegacao">
+			<div id="aba1" class="botao_aba" onmouseup="abrirAba(1)"> Principal </div>
+			<div id="aba2" class="botao_aba" onmouseup="abrirAba(2)"> Evolução </div>
+			<div id="aba3" class="botao_aba" onmouseup="abrirAba(3)"> Habilidades </div>
+			<div id="aba4" class="botao_aba" onmouseup="abrirAba(4)"> Equipamentos </div>
+			<div id="aba5" class="botao_aba" onmouseup="abrirAba(5)"> Companheiros </div>
+			<div id="aba6" class="botao_aba" onmouseup="abrirAba(6)"> Exportar </div>
+			<div id="abaC" class="botao_direita" onmouseup="voltarParaTelaInicial()"> Voltar </div>
+			<div id="abaS" class="botao_salvar" onmouseup="salvarPersonagem()"> Salvar </div>
+		</div>
+		<div id="barra_inferior"> </div>
+		<a id="versao"> v0.3.5 </a>
+<!- ->
+		<div id="aba_inicial" class="aba">
+			<div id="logoMB" class="logo"> <img onmouseover="carregarHTMLInicialNoDetalhador(-1)" src="img/0logo.png" alt="Mighty Blade""> </div>
+			<div id="menu">
+				<div id="personagens" class="caixa"> <div class="cabecalho bb1"> Personagens </div> <div id="lista_de_personagens" class="lista t6l"> </div> <div class="rodape bt"> <button class="botao_inicial" onmouseup="novoPersonagem()"> + Novo </button> <button class="botao_inicial" onmouseup="exportarPersonagens()"> ⎘ Exportar </button> <label class="botao_inicial" for="botao_importar_personagens"> <div class="mt"> ⎗ Importar </div> </label> <input type="file" class="custom-file-input" id="botao_importar_personagens"/> </div> </div>
+				<div id="materiais" class="caixa"> <div class="cabecalho"> Materiais </div> <div id="lista_de_materiais"> </div> <div class="rodapezim"> </div> </div>
+				<div id="opcoes" class="caixa"> <div class="cabecalho"> Opções </div> <div id="lista_de_opcoes""> </div> <div class="rodapezim"> </div> </div>
+			</div>
+		</div>
 
-          <div class="rodape">
-            <button class="botao_inicial" onmouseup="novoPersonagem()"> + Novo </button>
-            <button class="botao_inicial" onmouseup="exportarPersonagens()"> ⎘ Exportar </button>
-            <label class="botao_inicial" for="botao_importar_personagens"> <div class="mt"> ⎗ Importar </div> </label> <input type="file" class="custom-file-input" id="botao_importar_personagens"/>
-          </div>
-        </div>
+<!- RÓTULO ->
+		<div id="aba_rotulo" class="aba esquerda">
+			<div id="rotulos_coluna_a">
+				<div class="contexto_texto caixa"> <div class="cabecalho"> <b> Nome do Jogador </b> </div> <input id="nome_jogador" class="entrada_texto" type="text" maxlength="40"> <div class="rodape"> </div> </div>
+				<div id="selecionados" class="et"> <div class='t6l'> <table id="rotulos_selecionados_lista"> </table> </div> <div class="rodapezim"> </div> </div>
+				<div id="idiomas" class="et"> <div class='t3l'> <table id="idiomas_lista"> </table> </div> <div id="idiomas_quant" class="rodape"> 0 à escolha. </div> </div>
+			</div>
+			<div id="rotulos_coluna_b">
+				<div class="contexto_texto caixa"> <div class="cabecalho"> <b> Nome do Personagem </b> <div class="lc amar" title="Ajuda com Nome" onmousedown="mostrarAjudaComNome()"> [?] </div> </div> <input id="nome_personagem" class="entrada_texto" type="text" maxlength="40"> <div class="rodape"> </div> </div>
+				<div id="detalhador" class="et"> <div class='t11l'> <table id="detalhador_atual"> </table> </div> <div class="rodapezim"> </div> </div>
+			</div>
+			<div id="rotulos_coluna_c">		
+				<div id="rot_idade" class="caixa"> <div class="cabecalho"> <b> Idade </b> </div> <input id="idade" class="entrada_numero" type="number" value="25" min="10" max="999"> <div class="rodape"> </div> </div>
+				<div id="rot_motivacao" class="contexto_texto caixa"> <div class="cabecalho"> <b> Motivação </b> </div> <input id="motivacao" class="entrada_texto" type="text" maxlength="40"> <div class="rodape"> </div> </div>
+			<div id="registro" class="et"> <div class='t11l'> <table id="registro_lista"> </table> </div> <div class="rodape"> <button id="botao_rotulo_1" class="botao_fonte" onmouseOver="mostrarRotuloDeFonte(1)" onmouseup="selecionarFonteDeRotulos(1)"> Raça </button>	<button id="botao_rotulo_2" class="botao_fonte" onmouseOver="mostrarRotuloDeFonte(2)" onmouseup="selecionarFonteDeRotulos(2)"> Classe </button> <button id="botao_rotulo_3" class="botao_fonte" onmouseOver="mostrarRotuloDeFonte(3)" onmouseup="selecionarFonteDeRotulos(3)"> Antec. </button> <button id="botao_rotulo_4" class="botao_fonte" onmouseOver="mostrarRotuloDeFonte(4)" onmouseup="selecionarFonteDeRotulos(4)"> Aprend. </button> <button id="botao_rotulo_5" class="botao_fonte" onmouseOver="mostrarRotuloDeFonte(5)" onmouseup="selecionarFonteDeRotulos(5)"> Camin. </button> <button id="botao_rotulo_6" class="botao_fonte" onmouseOver="mostrarRotuloDeFonte(6)" onmouseup="selecionarFonteDeRotulos(6)"> Organ. </button> </div> </div> </div>
+			</div>
+		</div>
 
-        <div id="materiais">
-          <div class="cabecalho"> <b> Materiais </b> </div>
-          <div id="lista_de_materiais" class="lista_curta"> </div>
-          <div class="rodapezim">
-          </div>
-        </div>
+<!- EVOLUÇÃO ->
+		<div id="aba_evolucao" class="aba direita">
+			<div id="nivel" class="caixa">
+				<div class="cabecalho"> <b> <a id="nivel_de_personagem"> 1 </a> </b> </div>
+				<div class="nvm"> <input id="range_nivel" type="range" class="slider" min="1" max="20" value="1" onchange="atualizarNivel()"> </div>
+				<div class="rodape"> </div>
+			</div>
+			<div id="vida" class="caixa"> <div class="cabecalho"> <a class="verm"> Vida </a> </div> <div id="vida_total" class="nvm"> </div> <div class="rodape"> </div> </div> 
+			<div id="mana" class="caixa"> <div class="cabecalho"> <a class="azul"> Mana </a> </div> <div id="mana_total" class="nvm"> </div> <div class="rodape"> </div> </div>
+			<div id="atributo" class="et">
+				<table>
+					<col class="w7"> 
+					<col class="w7"> 
+					<col class="w5"> 
+					<col class="w4"> <col class="w3"> 
+					<col class="w4"> <col class="w3">
+					<col class="w7"> 
+					<col class="w4"> <col class="w3"> 
+					<col class="w4"> <col class="w3"> 
+					<col class="w4"> <col class="w3"> 
+					<col class="w4"> <col class="w3"> 
+					<col class="w4"> <col class="w3"> 
+					<col class="w4"> <col class="w3"> 
+ 				<col class="w10">
+					<thead> <tr> 
+						<th> <div class="pt02 w7"> Atributos </div> </th> 
+						<th> <div class="pt02 w7"> Total </div> </th> 
+						<th> <div id="cab_raca_" class="pt02 w5"> Raça </div> </th> 
+						<th> <div id="cab_adapt" class="pt02 w7" colspan="2"> Adapt. </div> </th> <th> </th>
+						<th> <div id="cab_diver" class="pt02 w7" colspan="2"> Divrs. </div> </th> <th> </th>
+						<th> <div id="cab_class" class="pt02 w7"> Classe </div> </th> 
+						<th> <div id="cab_antec" class="pt02 w7" colspan="2"> Antec. </div> </th> <th> </th>
+						<th> <div id="cab_nivl4" class="pt02 w7" colspan="2"> Nível 4 </div> </th> <th> </th>
+						<th> <div id="cab_nivl7" class="pt02 w7" colspan="2"> Nível 7 </div> </th> <th> </th>
+						<th> <div id="cab_nvl10" class="pt02 w7" colspan="2"> Nível 10 </div> </th> <th> </th>
+						<th> <div id="cab_nvl16" class="pt02 w7" colspan="2"> Nível 16 </div> </th> <th> </th>
+						<th> <div id="cab_extra" class="pt02 w7" colspan="2"> Extra </div> </th> <th> </th>
+						<th> <div id="cab_bonus" class="pt02 w10"> Bônus </div> </th> </tr> </thead> 
 
-        <div id="opcoes">
-          <div class="cabecalho"> <b> Opções </b> </div>
-          <div id="lista_de_opcoes" class="lista_curta"> </div>
-          <div class="rodapezim">
-          </div>
-        </div>
+					<tr class="par">   <td> Força        </td> <td id="for_total_txt"> </td> <td id="for_raca__txt"> </td> <td> <label class="cont_amar"> <input id="for_adapt_box" type="checkbox" onchange="cliqueForAdapt()"> <span class="checkmark"> </span> </label> </td> <td id="for_adapt_txt"> </td> <td> <label class="cont_amar"> <input id="for_diver_box" type="checkbox" onchange="cliqueForDiver()"> <span class="checkmark"> </span> </label> </td> <td id="for_diver_txt"> </td> <td id="for_class_txt"> </td> <td> <label class="cont_verm"> <input id="for_antec_box" type="checkbox" onchange="cliqueForAntec()"> <span class="checkmark"> </span> </label> </td> <td id="for_antec_txt"> </td> <td> <label class="cont_azul"> <input id="for_nivl4_box" type="checkbox" onchange="cliqueForNivl4()"> <span class="checkmark"> </span> </label> </td> <td id="for_nivl4_txt"> </td> <td> <label class="cont_azul"> <input id="for_nivl7_box" type="checkbox" onchange="cliqueForNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="for_nivl7_txt"> </td> <td> <label class="cont_azul"> <input id="for_nvl10_box" type="checkbox" onchange="cliqueForNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="for_nvl10_txt"> </td> <td> <label class="cont_azul"> <input id="for_nvl16_box" type="checkbox" onchange="cliqueForNvl16();"> <span class="checkmark"> </span> </label> </td> <td id="for_nvl16_txt"> </td> <td> <label class="cont_verd"> <input id="for_extra_box" type="checkbox" onchange="cliqueForExtra()"> <span class="checkmark"> </span> </label> </td> <td id="for_extra_txt"> </td> <td id="for_bonus_txt"> </td> </tr>					
+					<tr class="impar"> <td> Agilidade    </td> <td id="agi_total_txt"> </td> <td id="agi_raca__txt"> </td> <td> <label class="cont_amar"> <input id="agi_adapt_box" type="checkbox" onchange="cliqueAgiAdapt()"> <span class="checkmark"> </span> </label> </td> <td id="agi_adapt_txt"> </td> <td> <label class="cont_amar"> <input id="agi_diver_box" type="checkbox" onchange="cliqueAgiDiver()"> <span class="checkmark"> </span> </label> </td> <td id="agi_diver_txt"> </td> <td id="agi_class_txt"> </td> <td> <label class="cont_verm"> <input id="agi_antec_box" type="checkbox" onchange="cliqueAgiAntec()"> <span class="checkmark"> </span> </label> </td> <td id="agi_antec_txt"> </td> <td> <label class="cont_azul"> <input id="agi_nivl4_box" type="checkbox" onchange="cliqueAgiNivl4()"> <span class="checkmark"> </span> </label> </td> <td id="agi_nivl4_txt"> </td> <td> <label class="cont_azul"> <input id="agi_nivl7_box" type="checkbox" onchange="cliqueAgiNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="agi_nivl7_txt"> </td> <td> <label class="cont_azul"> <input id="agi_nvl10_box" type="checkbox" onchange="cliqueAgiNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="agi_nvl10_txt"> </td> <td> <label class="cont_azul"> <input id="agi_nvl16_box" type="checkbox" onchange="cliqueAgiNvl16();"> <span class="checkmark"> </span> </label> </td> <td id="agi_nvl16_txt"> </td> <td> <label class="cont_verd"> <input id="agi_extra_box" type="checkbox" onchange="cliqueAgiExtra()"> <span class="checkmark"> </span> </label> </td> <td id="agi_extra_txt"> </td> <td id="agi_bonus_txt"> </td> </tr>
+					<tr class="par">   <td> Inteligência </td> <td id="int_total_txt"> </td> <td id="int_raca__txt"> </td> <td> <label class="cont_amar"> <input id="int_adapt_box" type="checkbox" onchange="cliqueIntAdapt()"> <span class="checkmark"> </span> </label> </td> <td id="int_adapt_txt"> </td> <td> <label class="cont_amar"> <input id="int_diver_box" type="checkbox" onchange="cliqueIntDiver()"> <span class="checkmark"> </span> </label> </td> <td id="int_diver_txt"> </td> <td id="int_class_txt"> </td> <td> <label class="cont_verm"> <input id="int_antec_box" type="checkbox" onchange="cliqueIntAntec()"> <span class="checkmark"> </span> </label> </td> <td id="int_antec_txt"> </td> <td> <label class="cont_azul"> <input id="int_nivl4_box" type="checkbox" onchange="cliqueIntNivl4()"> <span class="checkmark"> </span> </label> </td> <td id="int_nivl4_txt"> </td> <td> <label class="cont_azul"> <input id="int_nivl7_box" type="checkbox" onchange="cliqueIntNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="int_nivl7_txt"> </td> <td> <label class="cont_azul"> <input id="int_nvl10_box" type="checkbox" onchange="cliqueAgiNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="int_nvl10_txt"> </td> <td> <label class="cont_azul"> <input id="int_nvl16_box" type="checkbox" onchange="cliqueIntNvl16();"> <span class="checkmark"> </span> </label> </td> <td id="int_nvl16_txt"> </td> <td> <label class="cont_verd"> <input id="int_extra_box" type="checkbox" onchange="cliqueIntExtra()"> <span class="checkmark"> </span> </label> </td> <td id="int_extra_txt"> </td> <td id="int_bonus_txt"> </td> </tr>					
+					<tr class="impar"> <td> Vontade      </td> <td id="von_total_txt"> </td> <td id="von_raca__txt"> </td> <td> <label class="cont_amar"> <input id="von_adapt_box" type="checkbox" onchange="cliqueVonAdapt()"> <span class="checkmark"> </span> </label> </td> <td id="von_adapt_txt"> </td> <td> <label class="cont_amar"> <input id="von_diver_box" type="checkbox" onchange="cliqueVonDiver()"> <span class="checkmark"> </span> </label> </td> <td id="von_diver_txt"> </td> <td id="von_class_txt"> </td> <td> <label class="cont_verm"> <input id="von_antec_box" type="checkbox" onchange="cliqueVonAntec()"> <span class="checkmark"> </span> </label> </td> <td id="von_antec_txt"> </td> <td> <label class="cont_azul"> <input id="von_nivl4_box" type="checkbox" onchange="cliqueVonNivl4()"> <span class="checkmark"> </span> </label> </td> <td id="von_nivl4_txt"> </td> <td> <label class="cont_azul"> <input id="von_nivl7_box" type="checkbox" onchange="cliqueVonNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="von_nivl7_txt"> </td> <td> <label class="cont_azul"> <input id="von_nvl10_box" type="checkbox" onchange="cliqueAgiNivl7();"> <span class="checkmark"> </span> </label> </td> <td id="von_nvl10_txt"> </td> <td> <label class="cont_azul"> <input id="von_nvl16_box" type="checkbox" onchange="cliqueVonNvl16();"> <span class="checkmark"> </span> </label> </td> <td id="von_nvl16_txt"> </td> <td> <label class="cont_verd"> <input id="von_extra_box" type="checkbox" onchange="cliqueVonExtra()"> <span class="checkmark"> </span> </label> </td> <td id="von_extra_txt"> </td> <td id="von_bonus_txt"> </td> </tr>					
 
+				</table>
+				<div class="rodape"> </div>
+			</div>
+			<div id="vital" class="et">
+				<table>
+					<col class="w15"> <col class="w4"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5"> <col class="w5">
+					<thead> <tr> <th> <div class="pt02 w15"> Evolução </div> </th> <th> <div id="nivel_." class="pt02 w4"> Nv. </div> </th> <th> <div id="nivel_2" class="pt02 w5"> 2 </div> </th> <th> <div id="nivel_3" class="pt02 w5"> 3 </div> </th> <th> <div id="nivel_4" class="pt02 w5"> 4 </div> </th> <th> <div id="nivel_5" class="pt02 w5"> 5 </div> </th> <th> <div id="nivel_6" class="pt02 w5"> 6 </div> </th> <th> <div id="nivel_7" class="pt02 w5"> 7 </div> </th> <th> <div id="nivel_8" class="pt02 w5"> 8 </div> </th> <th> <div id="nivel_9" class="pt02 w5"> 9 </div> </th> <th> <div id="nivel_10" class="pt02 w5"> 10 </div> </th> <th> <div id="nivel_11" class="pt02 w5"> 12 <div> </th> <th> <div id="nivel_12" class="pt02 w5"> 14 <div> </th> <th> <div id="nivel_13" class="pt02 w5"> 18 </div> </th> <th> <div id="nivel_14" class="pt02 w5"> 20 </div> </th> <th> <div id="primarca" class="pt02 w5"> * </div> </th> <th> </th> </tr> </thead>
+					<tr class="par">   <td> +10 Pontos de Vida </td>       <td> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_2_box" onchange="cliqueEvolucao(1,2)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_3_box" onchange="cliqueEvolucao(1,3)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_4_box" onchange="cliqueEvolucao(1,4)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_5_box" onchange="cliqueEvolucao(1,5)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_6_box" onchange="cliqueEvolucao(1,6)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_7_box" onchange="cliqueEvolucao(1,7)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_8_box" onchange="cliqueEvolucao(1,8)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_9_box" onchange="cliqueEvolucao(1,9)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_10_box" onchange="cliqueEvolucao(1,10)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_11_box" onchange="cliqueEvolucao(1,11)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_12_box" onchange="cliqueEvolucao(1,12)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_13_box" onchange="cliqueEvolucao(1,13)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_14_box" onchange="cliqueEvolucao(1,14)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verm"> <input type="checkbox" id="_v+10_15_box" onchange="cliquePrimeiraMarca(1)"> <span class="checkmark"> </span> </label> </td> <td> </td> </tr>
+					<tr class="impar"> <td> +10 Pontos de Mana </td>       <td> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_2_box" onchange="cliqueEvolucao(2,2)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_3_box" onchange="cliqueEvolucao(2,3)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_4_box" onchange="cliqueEvolucao(2,4)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_5_box" onchange="cliqueEvolucao(2,5)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_6_box" onchange="cliqueEvolucao(2,6)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_7_box" onchange="cliqueEvolucao(2,7)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_8_box" onchange="cliqueEvolucao(2,8)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_9_box" onchange="cliqueEvolucao(2,9)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_10_box" onchange="cliqueEvolucao(2,10)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_11_box" onchange="cliqueEvolucao(2,11)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_12_box" onchange="cliqueEvolucao(2,12)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_13_box" onchange="cliqueEvolucao(2,13)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_14_box" onchange="cliqueEvolucao(2,14)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_azul"> <input type="checkbox" id="_m+10_15_box" onchange="cliquePrimeiraMarca(2)"> <span class="checkmark"> </span> </label> </td> <td> </td> </tr>
+					<tr class="par">   <td> +5 Pontos de Vida e Mana </td> <td> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_2_box" onchange="cliqueEvolucao(3,2)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_3_box" onchange="cliqueEvolucao(3,3)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_4_box" onchange="cliqueEvolucao(3,4)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_5_box" onchange="cliqueEvolucao(3,5)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_6_box" onchange="cliqueEvolucao(3,6)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_7_box" onchange="cliqueEvolucao(3,7)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_8_box" onchange="cliqueEvolucao(3,8)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_9_box" onchange="cliqueEvolucao(3,9)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_10_box" onchange="cliqueEvolucao(3,10)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_11_box" onchange="cliqueEvolucao(3,11)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_12_box" onchange="cliqueEvolucao(3,12)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_13_box" onchange="cliqueEvolucao(3,13)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_roxo"> <input type="checkbox" id="v&m+5_14_box" onchange="cliqueEvolucao(3,14)"> <span class="checkmark"> </span> </label> </td> <td> </td> <td> </td> </tr>
+					<tr class="impar"> <td> Aprendiz de Classe </td>       <td> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_2_box" onchange="cliqueEvolucao(4,2)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_3_box" onchange="cliqueEvolucao(4,3)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_4_box" onchange="cliqueEvolucao(4,4)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_5_box" onchange="cliqueEvolucao(4,5)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_6_box" onchange="cliqueEvolucao(4,6)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_7_box" onchange="cliqueEvolucao(4,7)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_8_box" onchange="cliqueEvolucao(4,8)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_9_box" onchange="cliqueEvolucao(4,9)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_10_box" onchange="cliqueEvolucao(4,10)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_11_box" onchange="cliqueEvolucao(4,11)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_12_box" onchange="cliqueEvolucao(4,12)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_13_box" onchange="cliqueEvolucao(4,13)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_amar"> <input type="checkbox" id="aprnd_14_box" onchange="cliqueEvolucao(4,14)"> <span class="checkmark"> </span> </label> </td> <td> </td> <td> </td> </tr>
+					<tr class="par">   <td> Aprendiz de Caminho </td>      <td> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_2_box" onchange="cliqueEvolucao(5,2)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_3_box" onchange="cliqueEvolucao(5,3)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_4_box" onchange="cliqueEvolucao(5,4)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_5_box" onchange="cliqueEvolucao(5,5)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_6_box" onchange="cliqueEvolucao(5,6)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_7_box" onchange="cliqueEvolucao(5,7)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_8_box" onchange="cliqueEvolucao(5,8)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_9_box" onchange="cliqueEvolucao(5,9)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_10_box" onchange="cliqueEvolucao(5,10)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_11_box" onchange="cliqueEvolucao(5,11)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_12_box" onchange="cliqueEvolucao(5,12)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_13_box" onchange="cliqueEvolucao(5,13)"> <span class="checkmark"> </span> </label> </td> <td> <label class="cont_verd"> <input type="checkbox" id="camin_14_box" onchange="cliqueEvolucao(5,14)"> <span class="checkmark"> </span> </label> </td> <td> </td> <td> </td> </tr>
+					<tr class="impar"> <td> Idioma Extra </td> <td> </td>  <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> <td> </td> </tr>
+				</table>
+				<div class="rodape"> </div>
+			</div>
+		</div>
 
+<!- HABILIDADE ->
+		<div id="aba_habilidade" class="aba direita">
+			<div id="possuidas" class="et"> <div class="t13l"> <table id="habilidades_possuidas_lista"> </table> </div> <div class="rodape"> <div id="habilidades_disponiveis" class="tc w100"> </div> </div> </div>
+			<div id="mostrador" class="caixa"> </div>
+			<div id="seletor" class="et"> 
+				<div class="t13l"> 
+					<table id="seletor_de_habilidades"> </table> 
+				</div>
+				<div class="rodape"> 
+					<button id="botao_habilidade_0" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(0)"> Geral </button> <button id="botao_habilidade_1" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(1)"> Raça </button> <button id="botao_habilidade_2" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(2)"> Classe </button> <button id="botao_habilidade_4" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(4)"> Aprendiz </button> <button id="botao_habilidade_5" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(5)"> Caminho </button> <button id="botao_habilidade_6" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(6)"> Extra </button> <button id="botao_habilidade_7" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(7)"> Organiz. </button> <button id="botao_habilidade_8" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(8)"> Dogma </button> <button id="botao_habilidade_9" class="botao_fonte" onmouseup="cliqueFonteDeHabilidades(9)"> Esp.Animal </button> 
+				</div> 
+			</div>
+		</div>
 
-      </div>
-    </div>
-<!- ->
-<!- ->
-<!- ->
-    <div id="aba_rotulo" class="aba esquerda">
-      <div id="contexto">
-         <div id="contexto_jogador">
-           <div class="cabecalho"> <b> Nome do Jogador </b> </div>
-           <input id="nome_jogador" class="entrada_texto" type="text" maxlength="80">
-           <div class="rodape"> </div>
-         </div>
-         <div id="contexto_personagem">
-           <div class="cabecalho"> <b> Nome do Personagem </b> </div>
-           <input id="nome_personagem" class="entrada_texto" type="text" maxlength="80">
-           <div class="rodape"> </div>
-         </div>
-         <div id="contexto_idade">   
-           <div class="cabecalho"> <b> Idade </b> </div>
-           <input id="idade" class="entrada_numero" type="number" value="25" min="10" max="999"> 
-           <div class="rodape"> </div>
-         </div>
-         <div id="contexto_motivacao">
-           <div class="cabecalho"> <b> Motivação </b> </div>
-           <input id="motivacao" class="entrada_texto" type="text" maxlength="80">
-           <div class="rodape"> </div>
-         </div>
-      </div>
+<!- EQUIPAMENTO ->
+		<div id="aba_equipamento" class="aba direita">
+			<div id="inventario" class="et"> <div class='t8l'> <table id="lista_do_inventario"> </table> </div> <div id="moedas" class="rodape"> </div> </div>
+			<div id="mostruario" class="et"> <div class='t8l'> <table id="lista_do_mostruario"> </table> </div> <div class="rodape"> <button id="bt_eqp_0" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(0)"> Arma </button> <button id="bt_eqp_1" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(1)"> Projétil </button> <button id="bt_eqp_2" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(2)"> Munição </button> <button id="bt_eqp_3" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(3)"> Conjuração </button> <button id="bt_eqp_4" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(4)"> Defesa </button> <button id="bt_eqp_5" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(5)"> Musical </button> <button id="bt_eqp_6" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(6)"> Poção </button> <button id="bt_eqp_7" class="bt_c_" onmouseup="cliqueCategoriaDeEquipamento(7)"> Mundano </button> </div> </div>
+			<div id="ataque" class="et"> <div class="t4l"> <table id="lista_de_ataques"> </table> </div> <div class="rodape"> </div> </div>
+			<div id="defesa" class="et"> <div class="t3l"> <table id="lista_de_defesas"> </table> </div> <div class="rodape"> </div>	</div>
+			<div id="movimentacao" class="et"> <div class="t4l"> <table id="lista_de_movimentos"> </table> </div> <div class="rodape"> </div> </div>
+		</div>
 
-      <div id="selecionados">
-        <div id="rotulos_cabecalho" class="cabecalho">
-          <div id="rot_sel_cab_tipo"> <b> Rótulo </b> </div>
-          <div id="rot_sel_cab_nome"> <b> Nome </b> </div>
-        </div>
-        <div id="rotulos_selecionados_lista" class="lista"> </div>
-        <div class="rodapezim"> </div>
-      </div>
-      <div id="detalhador">
-      </div>
-      <div id="registro">
-        <div id="registro_cabecalho" class="cabecalho"> ... </div>
-        <div id="registro_lista" class="lista"> </div>
-        <div class="rodape">
-          <button id="botao_rotulo_1" class="botao_fonte"
-                  onmouseup="selecionarFonteDeRotulos(1)"> Raça     </button> 
-          <button id="botao_rotulo_2" class="botao_fonte"
-                  onmouseup="selecionarFonteDeRotulos(2)"> Classe   </button>
-          <button id="botao_rotulo_3" class="botao_fonte"
-                  onmouseup="selecionarFonteDeRotulos(3)"> Antec.   </button>
-          <button id="botao_rotulo_4" class="botao_fonte"
-                  onmouseup="selecionarFonteDeRotulos(4)"> Aprend.  </button> 
-          <button id="botao_rotulo_5" class="botao_fonte"
-                  onmouseup="selecionarFonteDeRotulos(5)"> Camin.  </button>
-          <button id="botao_rotulo_6" class="botao_fonte"
-                  onmouseup="selecionarFonteDeRotulos(6)"> Organ. </button>
-        </div>
-      </div>
-    </div>
-<!- ->
-<!- ->
-<!- ->
-    <div id="aba_evolucao" class="aba direita">
+<!- COMPANHEIRO ->
+		<div id="aba_companheiro" class="aba direita">
+			<div id="companheiro_coluna_a"> 
+				<div id="lista_de_companheiros" class="caixa"> <div class="cabecalho"> Companheiros </div> <div id="lista_companheiro" class="lista t4l"> </div> <div class="rodape"> </div> </div>
+				<div id="companheiro_ataque" class="et"> <div class="t3l"> <table id="companheiro_ataque_lista"> </table> </div>	<div class="rodape"> </div> </div>
+				<div id="companheiro_defesa" class="et"> <div class="t4l"> <table id="comp_defesa"> </table> </div> <div class="rodape"> </div> </div>
+			</div>
+			<div id="companheiro_coluna_b">
+				<div id="companheiro_atributos" class="et"> <table> <col class="w5"> <col class="w20"> <col class="w10"> <col class="w10"> <col class="w10"> <col class="w10"> <col class="w10"> <col class="w15"> <thead> <th colspan="t"> <div id = "comp_atb_titulo" class="pt02 w100"> Atributos </div> </thead>
+					<tr class="par"> <td> </td> <td id="cv0"> <div class="tl"> Vida </div> </td> <td id="cv1"> <a id="texto_vida_companheiro"> 0 </a> </td> <td id="cv2"> </td> <td id="cv3"> +5 </td> <td id="cv4"> <label class="cont_verm"> <input id="checkbox_vida_companheiro" type="checkbox" onchange="cliqueModificadorDeCompanheiro(0)"> <span class="checkmark"> </span> </label></td> <td id="cv5"> <div id="von_adaptabilidade_texto"> +10 </td> <td id="cv6"> +10 </td> </tr>
+					<tr class="impar"> <td> </td> <td id="cm0"> <div class="tl"> Mana </div> </td> <td id="cm1"> <a id="texto_mana_companheiro"> 0 </a> </td> <td id="cm2"> </td> <td id="cm3"> +5 </td> <td id="cm4"> <label class="cont_azul"> <input id="checkbox_mana_companheiro" type="checkbox" onchange="cliqueModificadorDeCompanheiro(1)"> <span class="checkmark"> </span> </label> </td> <td id="cm5"> <div id="vmn_adaptabilidade_texto"> +10 </div> </td> <td id="cm6"> +10 </td> </tr>
+					<tr class="par"> <td> </td> <td id="cfor0"> <div class="tl"> Força <div> </td> <td id="cfor1"> <a id="texto_for_companheiro"> 0 </a> </td> <td id="cfor2"> <label class="cont_amar"> <input id="checkbox_for_companheiro" type="checkbox" onchange="cliqueModificadorDeCompanheiro(2)"> <span class="checkmark"> </span> </label> </td> <td id="cfor3"> <div id="von_adaptabilidade_texto"> +1 </div> </td> <td id="cfor4"> </td> <td id="cfor5"> +1 </td> <td id="cfor6"> +1 </td> </tr>
+					<tr class="impar"> <td> </td> <td id="cagi0"> <div class="tl"> Agilidade </div> </td> <td id="cagi1"> <a id="texto_agi_companheiro"> 0 </a> </td> <td id="cagi2"> <label class="cont_amar"> <input id="checkbox_agi_companheiro" type="checkbox" onchange="cliqueModificadorDeCompanheiro(3)"> <span class="checkmark"> </span> </label> </td> <td id="cagi3"> <div id="von_adaptabilidade_texto"> +1 </div ></td> <td id="cagi4"> </td> <td id="cagi5"> +1 </td> <td id="cagi6"> +1 </td> </tr>
+					<tr class="par"> <td> </td> <td id="cint0"> <div class="tl"> Inteligência </div> </td> <td id="cint1"> <a id="texto_int_companheiro"> 0 </a> </td> <td id="cint2"> <label class="cont_amar"> <input id="checkbox_int_companheiro" type="checkbox" onchange="cliqueModificadorDeCompanheiro(4)"> <span class="checkmark"> </span> </label> </td> <td id="cint3"> <div id="von_adaptabilidade_texto"> +1 </div> </td> <td id="cint4"> </td> <td id="cint5"> +1 </td> <td id="cint6"> +1 </td> </tr>
+					<tr class="impar"> <td> </td> <td id="cvon0"> <div class="tl"> Vontade </div> </td> <td id="cvon1"> <a id="texto_von_companheiro"> 0 </a> </td> <td id="cvon2"> <label class="cont_amar"> <input id="checkbox_von_companheiro" type="checkbox" onchange="cliqueModificadorDeCompanheiro(5)"> <span class="checkmark"> </span> </label> </td> <td id="cvon3"> <div id="von_adaptabilidade_texto"> +1 </div> </td> <td id="cvon4"> </td> <td id="cvon5"> +1 </td> <td id="cvon6"> +1 </td> </tr>
+				</table> <div class="rodape"> </div> </div>
+				<div id="companheiro_habilidades" class="et"> <div class="t6l"> <table id="lista_comp_habilidades"> </table> </div>	<div id="comp_hab_quant" class="rodape"> </div> </div>
+			</div>
+			<div id="companheiro_coluna_c">
+				<div id="companheiro_hab_lista" class="et"> <div class="t6l"> <table id="seletor_habilidades_companheiro"> </table> </div> <div class="rodape"> </div> </div>				
+				<div id="companheiro_mostrador" class="caixa"> </div>				
+			</div>
+		</div>
+ 
+<!- EXPORTAR ->
+		<div id="aba_exportar" class="aba direita">
+   <div id="lista_de_formatos" class="caixa">
+    <div class="cabecalho" onmouseleave="previsualizarArquivo(-1)"> Formatos </div>
+    <div class="elemento_par" onmouseover="previsualizarArquivo(0)"> <div class="lf_nome"> Arquivo JSON </div> <div class="lf_botao"> <button class="botao_adi" onmouseup="downloadJSON()"> ⬇ </button> </div> </div>
+    <div class="elemento_impar" onmouseover="previsualizarArquivo(1)"> <div class="lf_nome"> Ficha TXT </div> <div class="lf_botao"> <button class="botao_dim" onmouseup="downloadTXT()"> ⬇ </button> </div> </div>
+    <div class="elemento_par" onmouseover="previsualizarArquivo(2)"> <div class="lf_nome"> Ficha Simplificada PNG </div> <div class="lf_botao"> <button class="botao_dim" onmouseup="downloadPNG('simp')"> ⬇ </button> </div> </div>
+    <div class="elemento_impar" onmouseover="previsualizarArquivo(3)"> <div class="lf_nome"> Ficha Avançada PNG [1/3] </div> <div class="lf_botao"> <button class="botao_dim" onmouseup="downloadPNG('av_p1')"> ⬇ </button> </div> </div>
+    <div class="elemento_par" onmouseover="previsualizarArquivo(4)"> <div class="lf_nome"> Ficha Avançada PNG [2/3] </div> <div class="lf_botao"> <button class="botao_dim" onmouseup="downloadPNG('av_p2')"> ⬇ </button> </div> </div>
+    <div class="elemento_impar" onmouseover="previsualizarArquivo(5)"> <div class="lf_nome"> Ficha Avançada PNG [3/3] </div> <div class="lf_botao"> <button class="botao_dim" onmouseup="downloadPNG('av_p3')"> ⬇ </button> </div> </div>
+				<div class="elemento_par" onmouseover="previsualizarArquivo(6)"> <div class="lf_nome"> Relatório de Erros </div> <div class="lf_botao"> <button class="botao_rem" onmouseup="downloadBUG()"> ⬇ </button> </div> </div>
+    <div class="rodape"> </div>
+   </div>
+			<div id="pre_visualizador" class="caixa">
+				<div class="cabecalho"> Pré-visualização </div> <div id="visualizador" class="caixa"> </div> <div class="rodape"> </div>
+			</div>
+		</div>
+	</div>
 
-        <div id="nivel">
-          <div class="cabecalho"> <b> <a id="nivel_de_personagem"> 1 </a> </b> </div>
-          <div class="nvm">             
-            <input id="range_nivel" type="range" class="slider" min="1" max="20" value="1" onchange="atualizarNivel()">
-          </div>
-           <div class="rodape"> </div>
-        </div>
+<!- POP -->
+		<div id="menu_pop" class="menu_pop_none"> </div>
+		<img id="fichaA" src="img/0fichaA.png" style="opacity:0;" width="0" height="0"> </img>
+		<img id="fichaB" src="img/0fichaB.png" style="opacity:0;" width="0" height="0"> </img>
+		<img id="fichaC" src="img/0fichaC.png" style="opacity:0;" width="0" height="0"> </img>
+		<img id="fichaS" src="img/0fichaS.png" style="opacity:0;" width="0" height="0"> </img>
+		<a id="resumo" style="opacity:0;" width="0" height="0"> </a>
 
-        <div id="vida">
-          <div class="cabecalho" id="vida_texto"> <b> Vida </b> </div>
-          <div class="nvm"> <div id="vida_total"> 60 </div> </div>
-           <div class="rodape"> </div>
-        </div> 
-
-        <div id="mana">
-          <div class="cabecalho" id="mana_texto"> <b> Mana </b> </div>
-          <div class="nvm"> <div id="mana_total"> 60 </div> </div>
-           <div class="rodape"> </div>
-        </div>
-
-  <! ->
-      <div id="atributo">
-        <div class="cabecalho">
-          <div                             class="atb_cab_nome">  <b> Atributos </b> </div>
-          <div                             class="atb_cab_texto"> <b> Total     </b> </div>
-          <div id="coluna_raca"            class="atb_cab_texto"> <b> Raça      </b> </div>
-          <div id="coluna_adaptabilidade"  class="atb_cab_caixa"> <b> Adapt.    </b> </div>
-          <div id="coluna_classe"          class="atb_cab_texto"> <b> Classe    </b> </div>
-          <div id="coluna_antecedente"     class="atb_cab_caixa"> <b> Antec.    </b> </div>
-          <div id="coluna_nivel4"          class="atb_cab_caixa"> <b> Nível 4   </b> </div>
-          <div id="coluna_nivel7"          class="atb_cab_caixa"> <b> Nível 7   </b> </div>
-          <div id="coluna_nivel10"         class="atb_cab_caixa"> <b> Nível 10  </b> </div>
-          <div id="coluna_nivel16"         class="atb_cab_caixa"> <b> Nível 16  </b> </div> 
-          <div id="coluna_extra"           class="atb_cab_texto"> <b> Extra     </b> </div>
-          <div id="coluna_bonus" class="atb_cab_bonus bloqueado"> <b> Bônus     </b> </div>        
-        </div>
-  <! ->
-        <div class="linha_impar">
-          <div class="atb_col_nome"> Força </div>
-          <div class="atb_col_texto"> <a id="for_total_texto">   0 </a> </div>
-          <div class="atb_col_texto"> <a id="for_raca_texto">   +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_amar"> <input id="checkbox_for_adaptabilidade" type="checkbox" 
-               onchange="cliqueModificadorUnicoDeAtributo(0,2)"> <span class="checkmark"> </span> </label>
-               <a id="for_adaptabilidade_texto"> +1 </a> </div>
-          <div class="atb_col_texto"> <a id="for_classe_texto"> +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verm"> <input id="checkbox_for_antecedente" type="checkbox" 
-               onchange="cliqueModificadorUnicoDeAtributo(0,4)"> <span class="checkmark"> </span> </label>
-               <a id="for_antecedente_texto"> -1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_for_nivel4" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(0,5)"> <span class="checkmark"> </span> </label>
-               <a id="for_nivel4_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_for_nivel7" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(0,6);"> <span class="checkmark"> </span> </label>
-               <a id="for_nivel7_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_for_nivel10" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(0,7);"> <span class="checkmark"> </span> </label>
-               <a id="for_nivel10_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_for_nivel16" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(0,8);"> <span class="checkmark"> </span> </label>
-               <a id="for_nivel16_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verd"> <input id="checkbox_for_extra" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(0,9)"> <span class="checkmark"> </span> </label>
-               <a id="for_extra_texto"> +1 </a> </div>
-          <div class="atb_col_caixa" id="for_habilidades"> <a id="for_habilidades_texto"> +0 </a> </div>
-        </div>
-  <! ->
-        <div class="linha_par">
-          <div class="atb_col_nome"> Agilidade </div>
-          <div class="atb_col_texto"> <a id="agi_total_texto">   0 </a> </div>
-          <div class="atb_col_texto"> <a id="agi_raca_texto">   +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_amar"> <input id="checkbox_agi_adaptabilidade" type="checkbox" 
-               onchange="cliqueModificadorUnicoDeAtributo(1,2)"> <span class="checkmark"> </span> </label>
-               <a id="agi_adaptabilidade_texto"> +1 </a> </div>
-          <div class="atb_col_texto"> <a id="agi_classe_texto"> +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verm"> <input id="checkbox_agi_antecedente" type="checkbox" 
-               onchange="cliqueModificadorUnicoDeAtributo(1,4)"> <span class="checkmark"> </span> </label>
-               <a id="agi_antecedente_texto"> -1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_agi_nivel4" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(1,5)"> <span class="checkmark"> </span> </label>
-               <a id="agi_nivel4_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_agi_nivel7" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(1,6)"> <span class="checkmark"> </span> </label>
-               <a id="agi_nivel7_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_agi_nivel10" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(1,7)"> <span class="checkmark"> </span> </label>
-               <a id="agi_nivel10_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_agi_nivel16" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(1,8)"> <span class="checkmark"> </span> </label>
-               <a id="agi_nivel16_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verd"> <input id="checkbox_agi_extra" type="checkbox" 
-               onchange="cliqueModificadorUnicoDeAtributo(1,9)"> <span class="checkmark"> </span> </label>
-               <a id="agi_extra_texto"> +1 </a> </div>
-          <div class="atb_col_caixa" id="agi_habilidades" > <a id="agi_habilidades_texto"> +0 </a> </div>
-        </div>
-  <! ->
-        <div class="linha_impar">
-          <div class="atb_col_nome"> Inteligência </div>
-          <div class="atb_col_texto"> <a id="int_total_texto">   0 </a> </div>
-          <div class="atb_col_texto"> <a id="int_raca_texto">   +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_amar"> <input id="checkbox_int_adaptabilidade" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(2,2)"> <span class="checkmark"> </span> </label>
-               <a id="int_adaptabilidade_texto"> +1 </a> </div>
-          <div class="atb_col_texto"> <a id="int_classe_texto"> +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verm"> <input id="checkbox_int_antecedente" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(2,4)"> <span class="checkmark"> </span> </label>
-               <a id="int_antecedente_texto"> -1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_int_nivel4" type="checkbox"
-               onchange="cliqueModificadorDuploDeAtributo(2,5)"> <span class="checkmark"> </span> </label>
-               <a id="int_nivel4_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_int_nivel7" type="checkbox" 
-               onchange="cliqueModificadorDuploDeAtributo(2,6)"> <span class="checkmark"> </span> </label>
-               <a id="int_nivel7_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_int_nivel10" type="checkbox"
-               onchange="cliqueModificadorDuploDeAtributo(2,7)"> <span class="checkmark"> </span> </label>
-               <a id="int_nivel10_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_int_nivel16" type="checkbox"
-               onchange="cliqueModificadorDuploDeAtributo(2,8)"> <span class="checkmark"> </span> </label>
-               <a id="int_nivel16_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verd"> <input id="checkbox_int_extra" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(2,9)"> <span class="checkmark"> </span> </label>
-               <a id="int_extra_texto"> +1 </a> </div>
-          <div class="atb_col_caixa" id="int_habilidades"> <a id="int_habilidades_texto"> +0 </a> </div>
-        </div>
-  <! ->
-        <div class="linha_par">
-          <div class="atb_col_nome"> Vontade </div>
-          <div class="atb_col_texto"> <a id="von_total_texto">   0 </a> </div>
-          <div class="atb_col_texto"> <a id="von_raca_texto">   +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_amar"> <input id="checkbox_von_adaptabilidade" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(3,2)"> <span class="checkmark"> </span> </label>
-               <a id="von_adaptabilidade_texto"> +1 </a> </div>
-          <div class="atb_col_texto"> <a id="von_classe_texto"> +0 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verm"> <input id="checkbox_von_antecedente" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(3,4)"> <span class="checkmark"> </span> </label>
-               <a id="von_antecedente_texto"> -1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_von_nivel4" type="checkbox"
-               onchange="cliqueModificadorDuploDeAtributo(3,5)"> <span class="checkmark"> </span> </label>
-               <a id="von_nivel4_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input id="checkbox_von_nivel7" type="checkbox"
-               onchange="cliqueModificadorDuploDeAtributo(3,6)"> <span class="checkmark"> </span> </label>
-               <a id="von_nivel7_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_von_nivel10" 
-               onchange="cliqueModificadorDuploDeAtributo(3,7)"> <span class="checkmark"> </span> </label>
-               <a id="von_nivel10_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_von_nivel16" 
-               onchange="cliqueModificadorDuploDeAtributo(3,8)"> <span class="checkmark"> </span> </label>
-               <a id="von_nivel16_texto"> +1 </a> </div>
-          <div class="atb_col_caixa"> <label class="cont_verd"> <input id="checkbox_von_extra" type="checkbox"
-               onchange="cliqueModificadorUnicoDeAtributo(3,9)"> <span class="checkmark"> </span> </label>
-               <a id="von_extra_texto"> +1 </a> </div>
-          <div class="atb_col_caixa" id="von_habilidades"> <a id="von_habilidades_texto"> +0 </a> </div>
-        </div>
-  <! ->
-        <div class="rodape"> </div>
-      </div>
-<!- ->
-      <div id="vital">
-        <div class="cabecalho"> 
-          <div               class="evo_cab_nome">  <b> Evolução </b> </div> 
-          <div id="nivel_."  class="evo_cab_caixa"> <b> Nv.      </b> </div>
-          <div id="nivel_2"  class="evo_cab_caixa"> <b> 2        </b> </div>
-          <div id="nivel_3"  class="evo_cab_caixa"> <b> 3        </b> </div>
-          <div id="nivel_4"  class="evo_cab_caixa"> <b> 4        </b> </div>
-          <div id="nivel_5"  class="evo_cab_caixa"> <b> 5        </b> </div>
-          <div id="nivel_6"  class="evo_cab_caixa"> <b> 6        </b> </div>
-          <div id="nivel_7"  class="evo_cab_caixa"> <b> 7        </b> </div>
-          <div id="nivel_8"  class="evo_cab_caixa"> <b> 8        </b> </div>
-          <div id="nivel_9"  class="evo_cab_caixa"> <b> 9        </b> </div>
-          <div id="nivel_10" class="evo_cab_caixa"> <b> 10       </b> </div>
-          <div id="nivel_11" class="evo_cab_caixa"> <b> 12       </b> </div>
-          <div id="nivel_12" class="evo_cab_caixa"> <b> 14       </b> </div>
-          <div id="nivel_13" class="evo_cab_caixa"> <b> 18       </b> </div>
-          <div id="nivel_14" class="evo_cab_caixa"> <b> 20       </b> </div>
-          <div id="primarca" class="evo_cab_caixa"> <b> *        </b> </div>
-        </div>
-<!- VIDA ->
-        <div class="linha_impar">
-          <div class="evo_col_nome"> +10 Pontos de Vida </div>
-          <div class="evo_col_caixa"> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_2"  
-                               onchange="cliqueEvolucao(1, 2)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_3"  
-                               onchange="cliqueEvolucao(1, 3)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_4"  
-                               onchange="cliqueEvolucao(1, 4)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_5"  
-                               onchange="cliqueEvolucao(1, 5)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_6"
-                               onchange="cliqueEvolucao(1, 6)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_7" 
-                               onchange="cliqueEvolucao(1, 7)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_8" 
-                               onchange="cliqueEvolucao(1, 8)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_9"
-                               onchange="cliqueEvolucao(1, 9)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_10"
-                               onchange="cliqueEvolucao(1,10)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_11"
-                               onchange="cliqueEvolucao(1,11)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_12"
-                               onchange="cliqueEvolucao(1,12)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_13"
-                               onchange="cliqueEvolucao(1,13)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_vida+10_14"
-                               onchange="cliqueEvolucao(1,14)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verm"> <input type="checkbox" id="checkbox_marca_vida"
-                               onchange="cliquePrimeiraMarca()"> <span class="checkmark"> </span> </label> </div>
-        </div>
-<!- MANA ->
-        <div class="linha_par">
-          <div class="evo_col_nome"> +10 Pontos de Mana </div>
-          <div class="evo_col_caixa"> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_2"
-                               onchange="cliqueEvolucao(2, 2)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_3"
-                               onchange="cliqueEvolucao(2, 3)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_4"  
-                               onchange="cliqueEvolucao(2, 4)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_5"  
-                               onchange="cliqueEvolucao(2, 5)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_6"  
-                               onchange="cliqueEvolucao(2, 6)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_7"  
-                               onchange="cliqueEvolucao(2, 7)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_8"  
-                               onchange="cliqueEvolucao(2, 8)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_9"
-                               onchange="cliqueEvolucao(2, 9)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_10"
-                               onchange="cliqueEvolucao(2,10)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_11"
-                               onchange="cliqueEvolucao(2,11)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_12"
-                               onchange="cliqueEvolucao(2,12)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_13"
-                               onchange="cliqueEvolucao(2,13)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_mana+10_14"
-                               onchange="cliqueEvolucao(2,14)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_azul"> <input type="checkbox" id="checkbox_marca_mana"
-                               onchange="cliquePrimeiraMarca()"> <span class="checkmark"> </span> </label> </div>
-        </div>
-<!- VIDA & MANA ->
-        <div class="linha_impar">
-          <div class="evo_col_nome"> +5 Pontos de Vida e Mana </div>
-          <div class="evo_col_caixa"> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_2"
-                               onchange="cliqueEvolucao(3, 2)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_3"  
-                               onchange="cliqueEvolucao(3, 3)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_4"
-                               onchange="cliqueEvolucao(3, 4)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_5"
-                               onchange="cliqueEvolucao(3, 5)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_6"
-                               onchange="cliqueEvolucao(3, 6)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_7"
-                               onchange="cliqueEvolucao(3, 7)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_8"
-                               onchange="cliqueEvolucao(3, 8)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_9"
-                               onchange="cliqueEvolucao(3, 9)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_10"
-                               onchange="cliqueEvolucao(3,10)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_11"
-                               onchange="cliqueEvolucao(3,11)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_12"
-                               onchange="cliqueEvolucao(3,12)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_13"
-                               onchange="cliqueEvolucao(3,13)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_roxo"> <input type="checkbox" id="checkbox_v&m+5_14"
-                               onchange="cliqueEvolucao(3,14)"> <span class="checkmark"> </span> </label> </div>
-        </div>
-<!- APRENDIZ ->
-        <div class="linha_par">
-          <div class="evo_col_nome"> Aprendiz de Classe </div>
-          <div class="evo_col_caixa"> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_2"
-                               onchange="cliqueEvolucao(4, 2)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_3"
-                               onchange="cliqueEvolucao(4, 3)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_4"
-                               onchange="cliqueEvolucao(4, 4)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_5"
-                               onchange="cliqueEvolucao(4, 5)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_6"
-                               onchange="cliqueEvolucao(4, 6)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_7"
-                               onchange="cliqueEvolucao(4, 7)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_8"
-                               onchange="cliqueEvolucao(4, 8)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_9"
-                               onchange="cliqueEvolucao(4, 9)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_10"
-                               onchange="cliqueEvolucao(4,10)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_11"
-                               onchange="cliqueEvolucao(4,11)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_12"
-                               onchange="cliqueEvolucao(4,12)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_13"
-                               onchange="cliqueEvolucao(4,13)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_amar"> <input type="checkbox" id="checkbox_aprendiz_14"
-                               onchange="cliqueEvolucao(4,14)"> <span class="checkmark"> </span> </label> </div>
-        </div>
-<!- CAMINHO ->
-        <div class="linha_impar">
-          <div class="evo_col_nome"> Aprendiz de Caminho </div>
-          <div class="evo_col_caixa"> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_2"
-                               onchange="cliqueEvolucao(5, 2)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_3"
-                               onchange="cliqueEvolucao(5, 3)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_4"
-                               onchange="cliqueEvolucao(5, 4)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_5"
-                               onchange="cliqueEvolucao(5, 5)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_6"
-                               onchange="cliqueEvolucao(5, 6)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_7"
-                               onchange="cliqueEvolucao(5, 7)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_8"
-                               onchange="cliqueEvolucao(5, 8)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_9"
-                               onchange="cliqueEvolucao(5, 9)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_10"
-                               onchange="cliqueEvolucao(5,10)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_11"
-                               onchange="cliqueEvolucao(5,11)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_12"
-                               onchange="cliqueEvolucao(5,12)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_13"
-                               onchange="cliqueEvolucao(5,13)"> <span class="checkmark"> </span> </label> </div>
-          <div class="evo_col_caixa"> <label class="cont_verd"> <input type="checkbox" id="checkbox_caminho_14"
-                               onchange="cliqueEvolucao(5,14)"> <span class="checkmark"> </span> </label> </div>
-        </div>
-        <div class="rodape"> </div>
-      </div>
-    </div>
-<!- ->
-<!- ->
-<!- ->
-    <div id="aba_habilidade" class="aba direita">
-      <div id="possuidas">
-        <div id="cabecalho" class="cabecalho">
-          <div id="hab_pos_cab_nome">        <b> Nome </b> </div>
-          <div id="hab_pos_cab_dificuldade"> <b> Dif. </b> </div>
-          <div id="hab_pos_cab_mana">        <b> Mana </b> </div>
-          <div id="hab_pos_cab_espaco">                    </div>
-        </div>
-        <div id="habilidades_possuidas_lista" class="lista_hab"> </div>
-        <div id="habilidades_disponiveis" class="rodape"> </div>
-      </div>
-      <div id="mostrador" class="mostrador"> </div>
-      <div id="seletor"> 
-        <div class="cabecalho"> 
-          <div id="hab_sel_cab_nome">        <b> Nome    </b> </div>
-          <div id="hab_sel_cab_categoria">   <b> Categ.  </b> </div>
-          <div id="hab_sel_cab_tipo">        <b> Tipo    </b> </div>
-          <div id="hab_sel_cab_dificuldade"> <b> Dif.    </b> </div>
-          <div id="hab_sel_cab_mana">        <b> Mana    </b> </div>
-        </div>
-        <div id="seletor_de_habilidades" class="lista_hab"> </div>
-        <div class="rodape">
-          <button id="botao_habilidade_0" class="botao_fonte" 
-                  onmouseup="selecionarFonteDeHabilidades(0)"> Geral     </button>
-          <button id="botao_habilidade_1" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(1)"> Raça      </button> 
-          <button id="botao_habilidade_2" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(2)"> Classe    </button>
-          <button id="botao_habilidade_4" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(4)"> Aprendiz  </button> 
-          <button id="botao_habilidade_5" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(5)"> Caminho   </button>
-          <button id="botao_habilidade_6" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(6)"> Extra     </button>
-          <button id="botao_habilidade_7" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(7)"> Organiz.  </button>
-          <button id="botao_habilidade_8" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(8)"> Dogma     </button>
-          <button id="botao_habilidade_9" class="botao_fonte"
-                  onmouseup="selecionarFonteDeHabilidades(9)"> Esp.Animal </button>
-        </div>
-      </div>
-    </div>
-<!- ->
-<!- ->
-<!- ->
-    <div id="aba_equipamento" class="aba direita">
-      <div id="inventario">
-        <div id="cabecalho" class="cabecalho">
-          <div id="eqp_inv_cab_nome">  <b> Equipamento </b> </div>
-          <div id="eqp_inv_cab_peso">  <b> Peso         </b> </div>
-          <div id="eqp_inv_cab_custo"> <b> Custo        </b> </div>
-        </div>
-        <div id="lista_do_inventario" class="lista"> </div>
-        <div id="moedas" class="rodape"> </div>
-      </div>
-      <div id="mostruario">
-        <div id="cabecalho_do_mostruario" class="cabecalho"> </div>
-        <div id="lista_do_mostruario" class="lista"> </div>
-        <div class="rodape">
-          <button id="botao_equipamento_0" class="botao_categoria"
-                  onmouseup="selecionarCategoriaDeEquipamento(0)"> Arma        </button>
-          <button id="botao_equipamento_1" class="botao_categoria"
-                  onmouseup="selecionarCategoriaDeEquipamento(1)"> Projétil    </button>
-          <button id="botao_equipamento_2" class="botao_categoria" 
-                  onmouseup="selecionarCategoriaDeEquipamento(2)"> Munição     </button>
-          <button id="botao_equipamento_3" class="botao_categoria" 
-                  onmouseup="selecionarCategoriaDeEquipamento(3)"> Conjuração  </button>
-          <button id="botao_equipamento_4" class="botao_categoria" 
-                  onmouseup="selecionarCategoriaDeEquipamento(4)"> Defesa      </button>
-          <button id="botao_equipamento_5" class="botao_categoria" 
-                  onmouseup="selecionarCategoriaDeEquipamento(5)"> Musical     </button>
-          <button id="botao_equipamento_6" class="botao_categoria" 
-                  onmouseup="selecionarCategoriaDeEquipamento(6)"> Poção       </button>
-          <button id="botao_equipamento_7" class="botao_categoria" 
-                  onmouseup="selecionarCategoriaDeEquipamento(7)"> Mundano     </button>
-        </div>
-      </div>
-<!- ->
-      <div id="ataque">
-        <div class="cabecalho">
-          <div id="atq_cab_nome">    <b> Ataque </b> </div>
-          <div id="atq_cab_tipo">    <b> Tipo </b> </div>
-          <div id="atq_cab_alcance"> <b> Alc. </b> </div>
-          <div id="atq_cab_dano">    <b> Dano </b> </div>
-        </div>
-        <div id="lista_de_ataques" class="lista"> </div>
-        <div class="rodape"> </div>
-      </div>
-<!- ->
-      <div id="defesa">
-        <div class='cabecalho'>
-          <div id="def_cab_nome">  <b> Defesa </b> </div>
-          <div id="def_cab_total"> <b> Total </b> </div>
-          <div id="def_cab_extra"> <b> Extra </b> </div> 
-        </div>
-        <div class="linha_impar">
-          <a                         class="def_elm_nome"  > Bloqueio: </a>
-          <a id="bloqueio_valor"     class="def_elm_valor" > 5 </a>
-          <a id="bloqueio_extra"     class="def_elm_extra" > - </a>
-        </div>
-        <div class="linha_par">
-          <a                         class="def_elm_nome"  >  Esquiva </a>
-          <a id="esquiva_valor"      class="def_elm_valor" > 5 </a>
-          <a id="esquiva_extra"      class="def_elm_extra" > - </a>
-        </div>
-        <div class="linha_impar">    
-          <a                         class="def_elm_nome"  > Determinação </a>
-          <a id="determinacao_valor" class="def_elm_valor" > 8 </a>
-          <a id="determinacao_extra" class="def_elm_extra" > - </a>
-        </div>
-        <div class="rodape"> </div>
-      </div>
-<!- ->
-      <div id="movimentacao">
-        <div class='cabecalho'> <b> Movimentação </b> </div> 
-        <div class="linha_impar">
-          <a                      class="crd_elm_nome" > Carga </a>
-          <a id="carga_valor"     class="crd_elm_valor"> </a>
-        </div>
-        <div class="linha_par" >
-          <a                      class="crd_elm_nome" > Deslocamento </a>
-          <a id="deslocamento"    class="crd_elm_valor"> 0 </a>
-        </div>
-        <div class="linha_impar">    
-          <a                      class="crd_elm_nome" > Corrida </a>
-          <a id="corrida"         class="crd_elm_valor"> 0 </a>
-        </div>
-        <div class="linha_par" >
-          <a                      class="crd_elm_nome" > Iniciativa </a>
-          <a id="iniciativa"      class="crd_elm_valor"> 0 </a>
-        </div>
-        <div class="rodape"> </div>
-      </div>
-    </div>
-<!- ->
-<!- ->
-<!- ->
-    <div id="aba_exportar" class="aba direita">
-
-      <div id="lista_de_formatos">
-        <div class="cabecalho"> <b> Formatos </b> </div>
-        <div class="elemento_impar"   onmouseover='previsualizarArquivo(0)'> 
-          <div class="lf_nome"> Arquivo JSON </div>
-          <button class="botao_dim" onmouseup="downloadJSON()"> ↓ </button>
-        </div>
-        <div class="elemento_par" onmouseover='previsualizarArquivo(1)'>
-          <div class="lf_nome"> Ficha TXT </div> 
-          <button class="botao_dim" onmouseup="downloadTXT()"> ↓ </button>
-        </div>
-        <div class="elemento_impar"   onmouseover='previsualizarArquivo(2)'>
-          <div class="lf_nome"> Ficha Simplificada PNG </div>
-          <button class="botao_dim" onmouseup="downloadPNG('simp')"> ↓ </button>
-        </div>
-        <div class="elemento_par" onmouseover='previsualizarArquivo(3)'>
-          <div class="lf_nome"> Ficha Avançada PNG [1/2] </div>
-          <button class="botao_dim" onmouseup="downloadPNG('av_p1')"> ↓ </button>
-        </div>
-        <div class="elemento_impar" onmouseover='previsualizarArquivo(4)'>
-          <div class="lf_nome"> Ficha Avançada PNG [2/2] </div> 
-          <button class="botao_dim" onmouseup="downloadPNG('av_p2')"> ↓ </button>
-        </div>
-        <div class="rodape"> </div>
-      </div>
-   
-      <div id="pre_visualizador">
-        <div class="cabecalho"> <b> Pré-visualização </b> </div>
-        <div id="visualizador"> . </div>
-        <div class="rodape"> </div>
-      </div>
-
-    </div>
-<!- ->
-    <img id="fichaA" src="img/0fichaA.png" style="opacity:0;" width="0" height="0"> </img>
-    <img id="fichaB" src="img/0fichaB.png" style="opacity:0;" width="0" height="0"> </img>
-    <img id="fichaC" src="img/0fichaC.png" style="opacity:0;" width="0" height="0"> </img>
-    <a id="resumo" style="opacity:0;" width="0" height="0"> </a>
-    
-<!- ->
-    <script src="script.js"> </script>
-  </body>
+		<script src="script.js"> </script>
+	</body>
 </html>
